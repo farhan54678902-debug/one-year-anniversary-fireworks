@@ -1,43 +1,280 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জুবায়ের ❤️ রাবেয়া | ১ বছর পূর্ণ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hind+Siliguri:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff477e;
+            --secondary: #ffccd5;
+            --dark: #800e13;
+            --soft: #fff5f7;
+            --gold: #ffb703;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--soft);
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Navigation Overlay */
+        .top-bar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0; z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            text-align: center; font-family: 'Pacifico', cursive;
+            color: var(--primary); font-size: 22px;
+        }
+
+        /* Animated Progress Bar */
+        .progress-bar {
+            position: fixed; top: 55px; left: 0; height: 6px;
+            background: var(--primary); width: 0%; z-index: 1001;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Background Music Button Style */
+        .music-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--primary); color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 2000; font-size: 25px;
+            box-shadow: 0 0 20px rgba(255, 71, 126, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        /* Section Global Styles */
+        section {
+            min-height: 100vh; padding: 100px 20px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; position: relative;
+        }
+
+        .card {
+            background: white; padding: 50px 30px;
+            border-radius: 40px; border: 2px solid var(--secondary);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.05);
+            max-width: 800px; width: 95%;
+            transform: translateY(50px); opacity: 0;
+            transition: 1s all ease;
+        }
+
+        .card.show { transform: translateY(0); opacity: 1; }
+
+        /* Titles */
+        h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--dark); margin: 0; }
+        .bangla-text { font-size: 1.4rem; line-height: 2; color: #444; }
+
+        /* Interactive Elements */
+        .cartoon-couple { font-size: 100px; margin: 20px 0; display: block; }
+        
+        .gift-box {
+            font-size: 80px; cursor: pointer; display: inline-block;
+            transition: transform 0.4s; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+        .gift-box:hover { transform: scale(1.3) rotate(15deg); }
+
+        /* Sorry Envelope Style */
+        .envelope {
+            width: 150px; height: 100px; background: #f08080;
+            margin: 20px auto; position: relative; cursor: pointer;
+            border-radius: 0 0 10px 10px;
+        }
+        .envelope::before {
+            content: ''; position: absolute; top: -50px; left: 0;
+            border-left: 75px solid transparent; border-right: 75px solid transparent;
+            border-bottom: 50px solid #f08080;
+        }
+        .letter {
+            display: none; background: #fff; padding: 15px;
+            border: 1px solid #ddd; margin-top: 20px; animation: slideDown 1s forwards;
+        }
+
+        /* Milestone Path */
+        .path { border-left: 5px dotted var(--primary); padding-left: 30px; text-align: left; margin: 30px auto; max-width: 500px; }
+        .point { margin-bottom: 40px; position: relative; }
+        .point::after { content: '💖'; position: absolute; left: -43px; top: 0; background: var(--soft); }
+
+        /* Particles */
+        .heart {
+            position: fixed; color: var(--primary); font-size: 20px;
+            pointer-events: none; z-index: -1; animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(2); opacity: 0; }
+        }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 71, 126, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(255, 71, 126, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 71, 126, 0); } }
+
+        .btn-celebrate {
+            background: linear-gradient(45deg, var(--primary), var(--dark));
+            color: white; border: none; padding: 20px 60px;
+            border-radius: 50px; font-size: 25px; cursor: pointer;
+            font-family: 'Pacifico', cursive; margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="top-bar">জুবায়ের ❤️ রাবেয়া: আমাদের ১ম বার্ষিকী</div>
+    <div class="progress-bar" id="progBar"></div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
-
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+    <section style="background: linear-gradient(to bottom, #ffccd5, #fff5f7);">
+        <div class="card show">
+            <span class="cartoon-couple">👫</span>
+            <h1>Happy 1 Year, Rabeya!</h1>
+            <p class="bangla-text">আজকের দিনটা শুধু তোমার আর আমার। জুবায়েরের পক্ষ থেকে তোমার জন্য সাজানো একটি ছোট্ট পৃথিবী। নিচে নামো, রাবেয়া...</p>
+            <div style="font-size: 50px; animation: bounce 2s infinite;">👇</div>
         </div>
-    </div>
-  </script>
+    </section>
 
-  <script src="js/app.js"></script>
+    <section>
+        <div class="card reveal" style="border: 3px dashed var(--primary);">
+            <span class="cartoon-couple" style="font-size: 80px;">🥺🙏</span>
+            <h2>মন থেকে কিছু কথা...</h2>
+            <p class="bangla-text">রাবেয়া, এই এক বছরে আমার অনেক ভুলের কারণে হয়তো তুমি কষ্ট পেয়েছো। আমি জুবায়ের হয়তো মাঝে মাঝে খুব জেদি, কিন্তু তোমার চোখের এক ফোঁটা জলও আমার সহ্য হয় না।</p>
+            <p style="color: var(--primary); font-weight: bold;">চিঠিটি খোলো জান:</p>
+            <div class="envelope" onclick="openLetter()"></div>
+            <div id="letter" class="letter">
+                <p class="bangla-text">
+                    "রাবেয়া, আমার করা প্রত্যেকটা ভুল দয়া করে ক্ষমা করে দিও। আমি কথা দিচ্ছি, আগামী বছরগুলোতে আমি আরও ভালো একজন মানুষ হয়ে তোমার পাশে থাকবো। তুমি আমার ভালোবাসা, তুমিই আমার জান।"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #fff0f3;">
+        <div class="card reveal">
+            <h2>🎁 তোমার প্রথম সারপ্রাইজ</h2>
+            <p class="bangla-text">এই বক্সে একটি ক্লিক করো তো!</p>
+            <div class="gift-box" onclick="showGift(this, '💍 আমাদের ভালোবাসা চিরদিনের!')">🎁</div>
+            <div class="gift-result"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <h2>🗺️ আমাদের এক বছরের সফর</h2>
+            <div class="path">
+                <div class="point"><strong>ফেব্রুয়ারি ২০২৫:</strong> আমাদের গল্পের শুরু। 🌸</div>
+                <div class="point"><strong>প্রথম ঈদ:</strong> একসাথে কাটানো সুন্দর মুহূর্ত। 🌙</div>
+                <div class="point"><strong>ঝগড়ার দিনগুলো:</strong> যেখান থেকে আমরা আরও কাছে এসেছি। ⛈️</div>
+                <div class="point"><strong>আজ:</strong> ৩৬৫ দিন পর, আমি এখনও তোমার প্রেমে পাগল। ❤️</div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #ffe5ec;">
+        <div class="card reveal">
+            <span class="cartoon-couple" style="font-size: 80px;">👸</span>
+            <h2>কেন তুমি জুবায়েরের কাছে স্পেশাল?</h2>
+            <p class="bangla-text">
+                ১. তোমার ওই মায়াবী চোখের চাহনি।<br>
+                ২. জুবায়ের এর প্রতি তোমার নিঃস্বার্থ কেয়ার।<br>
+                ৩. তোমার ওই কিউট করে কথা বলা।<br>
+                ৪. তুমি আছো বলেই আমার পৃথিবীটা পূর্ণ।
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <h2>🎁 আরও একটি বক্স আছে!</h2>
+            <div class="gift-box" onclick="showGift(this, '🏡 আমাদের সুন্দর একটা ভবিষ্যৎ হবে ইনশাআল্লাহ!')">🎁</div>
+            <div class="gift-result"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal" style="background: var(--dark); color: white;">
+            <h2>❤️ লাভ ক্যালকুলেটর</h2>
+            <p style="font-size: 2rem;">জুবায়ের + রাবেয়া =</p>
+            <div style="font-size: 5rem; color: var(--primary); font-family: 'Pacifico';">১০০%</div>
+            <p class="bangla-text" style="color: white;">আমাদের ভালোবাসা কোনো সংখ্যায় মাপা সম্ভব নয়!</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <span class="cartoon-couple" style="font-size: 80px;">🏠❤️</span>
+            <h2>আমার শেষ প্রতিশ্রুতি</h2>
+            <p class="bangla-text">
+                রাবেয়া, এই এক বছর যেমন আগলে রেখেছি, সারা জীবন এভাবেই জুবায়ের তোমার ছায়া হয়ে থাকবে। 
+                ঝড় আসুক কিংবা বৃষ্টি, আমি তোমার হাতটি ছাড়বো না।
+            </p>
+            <button class="btn-celebrate" onclick="grandFinale()">একটু চাপ দাও জান! ❤️</button>
+            
+            <div id="finale-msg" style="display:none; margin-top: 50px;">
+                <h1 style="color: var(--primary); font-size: 5rem;">Happy Anniversary, <br> My Queen!</h1>
+                <p class="bangla-text">জুবায়ের তোমাকে অনেক অনেক অনেক ভালোবাসে!</p>
+                <div style="font-size: 100px;">👰🤴🏰</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Progress Bar & Scroll Reveal
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progBar").style.width = scrolled + "%";
+
+            document.querySelectorAll('.card').forEach(card => {
+                let cardTop = card.getBoundingClientRect().top;
+                if(cardTop < window.innerHeight - 100) card.classList.add('show');
+            });
+        };
+
+        // Letter Opening
+        function openLetter() {
+            document.getElementById('letter').style.display = 'block';
+            document.querySelector('.envelope').style.background = '#ff4d6d';
+        }
+
+        // Gift Showing
+        function showGift(btn, msg) {
+            btn.innerHTML = '📂';
+            btn.nextElementSibling.innerHTML = `<p class="bangla-text" style="color: var(--primary); font-weight: bold; border: 2px solid; padding: 10px; border-radius: 10px; margin-top: 15px;">${msg}</p>`;
+        }
+
+        // Floating Hearts Generator
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = ['❤️', '💖', '💍', '🌸', '😘', '🧸'][Math.floor(Math.random()*6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }, 300);
+
+        // Final Celebration
+        function grandFinale() {
+            document.getElementById('finale-msg').style.display = 'block';
+            document.querySelector('.btn-celebrate').style.display = 'none';
+            window.scrollTo(0, document.body.scrollHeight);
+            
+            for(let i=0; i<100; i++) {
+                setTimeout(() => {
+                    const h = document.createElement('div');
+                    h.classList.add('heart');
+                    h.innerHTML = '❤️';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.fontSize = '40px';
+                    document.body.appendChild(h);
+                }, i * 50);
+            }
+        }
+    </script>
 </body>
 </html>
