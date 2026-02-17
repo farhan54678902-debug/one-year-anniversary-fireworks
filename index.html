@@ -1,43 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1st Anniversary! ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffeef2;
+            font-family: 'Trebuchet MS', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            border: 4px dashed #ff85a2;
+            max-width: 400px;
+            z-index: 10;
+        }
+
+        /* Cartoon Styles */
+        .cartoon-couple {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.5;
+            font-size: 18px;
+        }
+
+        .days-counter {
+            background: #ffecf1;
+            padding: 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            color: #ff477e;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff85a2;
+            font-size: 20px;
+            user-select: none;
+            animation: floatUp 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        button {
+            background: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
+        }
+
+        button:hover {
+            background: #ff85a2;
+            transform: scale(1.1);
+        }
+
+        /* Hidden Message */
+        #secret-msg {
+            display: none;
+            margin-top: 20px;
+            font-style: italic;
+            color: #ff477e;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div id="heart-container"></div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
-
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
-        </div>
-    </div>
-  </script>
-
-  <script src="js/app.js"></script>
-</body>
-</html>
+    <div class="container">
+        <div class="cartoon-couple">👩‍❤️‍👨</div>
+        
+        <h1>Happy 1 Year! ❤️</h1>
+        
+        <p>আমাদের একসাথে চলার ৩৬৫ দিন পূর্ণ হলো। তুমি আমার জীবনের সবচেয়ে সুন্দর উপহার।</p>
+        
+        <div class="days-counter">
+            ✨ ১ বছর
