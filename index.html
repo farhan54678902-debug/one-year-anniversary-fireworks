@@ -1,43 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jubayer ❤️ Rabeya | Forever Yours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hind+Siliguri:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ffb3c1;
+            --dark: #590d22;
+            --soft: #fff0f3;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--soft);
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .names-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            font-size: 20px;
+            color: var(--primary);
+            z-index: 1000;
+            background: rgba(255, 240, 243, 0.9);
+            padding: 10px 0;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--dark);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 15px 50px rgba(255, 77, 109, 0.2);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid var(--secondary);
+            opacity: 0;
+            transform: translateY(80px);
+            transition: 1s all ease-out;
+        }
+
+        .card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sorry Card Style */
+        .sorry-card {
+            border: 2px dashed var(--primary);
+            background: #fffafa;
+        }
+
+        .cartoon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: floatIcon 3s infinite ease-in-out;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h2 { font-family: 'Pacifico', cursive; color: var(--primary); margin-top: 0; }
+        p { font-size: 1.2rem; line-height: 1.8; color: #444; }
+
+        .btn-magic {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+            transition: 0.3s;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .btn-magic:hover { transform: scale(1.1); background: var(--dark); }
+
+        .heart-bg {
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            animation: rise 5s linear infinite;
+        }
+
+        @keyframes rise {
+            from { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="names-header">Jubayer ❤️ Rabeya</div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <section class="hero">
+        <div class="cartoon">👩‍❤️‍👨</div>
+        <h1 class="main-title">Happy 1st Anniversary!</h1>
+        <p>জুবায়েরের পৃথিবী আজ পূর্ণতা পেলো...</p>
+        <div style="font-size: 30px; margin-top: 20px; animation: bounce 2s infinite;">⬇️</div>
+    </section>
 
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+    <section>
+        <div class="card reveal sorry-card">
+            <div class="cartoon">🥺</div>
+            <h2>একটু শোনো রাবেয়া...</h2>
+            <p>
+                গত এক বছরে আমি হয়তো মনের অজান্তে তোমাকে অনেকবার কষ্ট দিয়েছি। কখনো রাগের মাথায়, কখনো অবুঝের মতো। 
+                আমি জানি জুবায়ের নিখুঁত কেউ নয়, কিন্তু জুবায়েরের ভালোবাসাটা একদম সত্যি। 
+                <br><br>
+                <strong>"রাবেয়া, আমার প্রত্যেকটা ভুল দয়া করে ক্ষমা করে দিও। তোমার ওই ছোট্ট মনে আমার প্রতি কোনো অভিমান জমিয়ে রেখো না।"</strong>
+            </p>
+            <div class="cartoon">🙏</div>
         </div>
-    </div>
-  </script>
+    </section>
 
-  <script src="js/app.js"></script>
+    <section>
+        <div class="card reveal">
+            <div class="cartoon">📸</div>
+            <h2>স্মৃতিরা কথা বলে</h2>
+            <p>
+                তুমি যখন হাসো, আমার পৃথিবীটা তখন থমকে দাঁড়ায়। এই ৩৬৫ দিনে আমরা কত স্বপ্ন দেখেছি, কত গল্প করেছি। 
+                তোমার জুবায়ের শুধু তোমার হাসিটাই দেখতে চায়, কোনোদিন তোমার চোখে জল আসতে দিতে চায় না।
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal" style="background: var(--soft);">
+            <div class="cartoon">⏳</div>
+            <h2>পুরোটা বছর জুড়ে তুমি</h2>
+            <p>
+                ১২ মাস তোমার মায়া,<br>
+                ৫২ সপ্তাহ তোমার ছায়া,<br>
+                ৩৬৫ দিন তোমার ভালোবাসা!<br>
+                <br>
+                রাবেয়া, জুবায়েরের কাছে তুমিই অক্সিজেন। 
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <div class="cartoon">💍</div>
+            <h2>আজকের এই দিনে আমার কথা</h2>
+            <p>আমি জুবায়ের কথা দিচ্ছি, এই হাতটি কোনোদিন ছাড়বো না। সারা জীবন তোমাকে একইভাবে ভালোবেসে যাবো।</p>
+            <br>
+            <button class="btn-magic" onclick="celebrate()">আমাকে কি মাফ করেছো? ❤️</button>
+            
+            <div id="final-msg" style="display:none; margin-top: 30px;">
+                <h1 style="color: var(--primary); font-family: 'Dancing Script'; font-size: 3.5rem;">I Love You, Jaan!</h1>
+                <p>সবসময় পাশে থেকো। জুবায়েরের রাবেয়া হয়ে!</p>
+                <div style="font-size: 60px;">🏰👸🤴</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Reveal Logic
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        });
+
+        // Background Hearts
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.classList.add('heart-bg');
+            h.innerHTML = ['❤️', '✨', '🌸', '😘', '🧸'][Math.floor(Math.random()*5)];
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = Math.random() * 20 + 10 + 'px';
+            h.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }, 300);
+
+        // Celebration
+        function celebrate() {
+            document.getElementById('final-msg').style.display = 'block';
+            document.querySelector('.btn-magic').innerText = "ধন্যবাদ রাবেয়া! ❤️";
+            
+            for(let i=0; i<80; i++) {
+                setTimeout(() => {
+                    const h = document.createElement('div');
+                    h.classList.add('heart-bg');
+                    h.innerHTML = '❤️';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.fontSize = '40px';
+                    document.body.appendChild(h);
+                }, i * 50);
+            }
+        }
+    </script>
 </body>
 </html>
