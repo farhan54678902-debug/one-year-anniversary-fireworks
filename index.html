@@ -1,43 +1,280 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jubayer ❤️ Rabeya | ১ম বার্ষিকী</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hind+Siliguri:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ffb3c1;
+            --dark: #590d22;
+            --soft: #fff0f3;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--soft);
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Custom Cursor --- */
+        body { cursor: url('https://cdn-icons-png.flaticon.com/32/833/833472.png'), auto; }
+
+        /* --- Floating Names Header --- */
+        .names-header {
+            position: fixed;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            color: var(--primary);
+            z-index: 1000;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            background: rgba(255, 240, 243, 0.8);
+            padding: 5px 0;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('https://www.transparenttextures.com/patterns/cubes.png');
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: var(--dark);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* --- Section Styling --- */
+        section {
+            min-height: 80vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.15);
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid var(--secondary);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s all ease;
+        }
+
+        .card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Animated Cartoon Icons --- */
+        .cartoon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        h2 { font-family: 'Pacifico', cursive; color: var(--primary); font-size: 2.5rem; }
+        p { font-size: 1.2rem; line-height: 1.8; color: #444; }
+
+        /* --- Love Counter --- */
+        .counter-container {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .count-box {
+            background: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        /* --- Floating Hearts Background --- */
+        .heart-bg {
+            position: absolute;
+            font-size: 20px;
+            color: var(--secondary);
+            opacity: 0.5;
+            z-index: -1;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Final Button --- */
+        .final-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+        }
+
+        .final-btn:hover { background: var(--dark); transform: scale(1.1); }
+
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="names-header">Jubayer ❤️ Rabeya</div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <section class="hero">
+        <div class="cartoon">💌</div>
+        <h1 class="main-title">Happy 1st Anniversary!</h1>
+        <p style="font-size: 1.5rem;">আজ আমাদের ভালোবাসার এক বছর পূর্ণ হলো!</p>
+        <div style="margin-top: 50px; font-size: 30px; animation: bounce 2s infinite;">👇</div>
+    </section>
 
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+    <section>
+        <div class="card reveal">
+            <div class="cartoon">☁️</div>
+            <h2>শুরুটা ছিল স্বপ্নের মতো</h2>
+            <p>
+                রাবেয়া, মনে আছে সেই প্রথম দিনটির কথা? যখন জুবায়েরের জীবনে তুমি প্রথম এসেছিলে। 
+                সেদিন থেকে আজ পর্যন্ত একটি দিনও তোমার কথা না ভেবে কাটেনি। 
+                তুমি এলে আর আমার পুরো পৃথিবীটাই বদলে দিলে।
+            </p>
         </div>
-    </div>
-  </script>
+    </section>
 
-  <script src="js/app.js"></script>
+    <section>
+        <div class="card reveal" style="background: var(--soft);">
+            <div class="cartoon">💑</div>
+            <h2>এক বছরের হাজারো স্মৃতি</h2>
+            <div class="counter-container">
+                <div class="count-box">১২ মাস হাসি</div>
+                <div class="count-box">৫২ সপ্তাহ আনন্দ</div>
+                <div class="count-box">৩৬৫ দিন ভালোবাসা</div>
+                <div class="count-box">৮৭৬০ ঘণ্টা ভরসা</div>
+            </div>
+            <p>আমাদের খুনসুটি, আমাদের রাগ-অভিমান আর দিনশেষে আবার একে অপরের হয়ে যাওয়া—এই তো আমাদের ভালোবাসা।</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <div class="cartoon">🌸</div>
+            <h2>Dear Rabeya,</h2>
+            <p>
+                জুবায়েরের জীবনের সবচেয়ে বড় প্রাপ্তি হলো তোমার ভালোবাসা। 
+                তুমি শুধু আমার প্রেমিকা নও, তুমি আমার সেরা বন্ধু। 
+                এই এক বছরে আমি শিখেছি ভালোবাসা মানে শুধু পাশে থাকা নয়, 
+                ভালোবাসা মানে একে অপরের ওপর অগাধ বিশ্বাস রাখা।
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <div class="cartoon">🏠</div>
+            <h2>আমাদের ভবিষ্যৎ</h2>
+            <p>
+                এটি তো কেবল শুরু! জুবায়ের আর রাবেয়ার এই গল্প চলবে বছরের পর বছর। 
+                হাতে হাত রেখে আমরা পাড়ি দেব জীবনের সব চড়াই-উতরাই। 
+                আমি কথা দিচ্ছি, সারাজীবন এভাবেই তোমাকে আগলে রাখবো।
+            </p>
+            <div class="cartoon">💍</div>
+        </div>
+    </section>
+
+    <section id="final">
+        <div class="card reveal">
+            <h2>Are you ready for my heart?</h2>
+            <button class="final-btn" onclick="startSurprise()">এখানে ক্লিক করো রাবেয়া!</button>
+            <div id="hidden-love" style="display:none; margin-top: 30px;">
+                <h1 style="color: var(--primary); font-family: 'Pacifico';">I LOVE YOU SO MUCH! ❤️</h1>
+                <p>সবসময় জুবায়েরের হয়ে থেকো।</p>
+                <div style="font-size: 100px;">👸🤴</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Reveal Logic
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        });
+
+        // Floating Hearts
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = ['❤️', '💖', '💕', '✨', '🌹'][Math.floor(Math.random()*5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = (window.scrollY + window.innerHeight) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 300);
+
+        // Surprise Function
+        function startSurprise() {
+            document.getElementById('hidden-love').style.display = 'block';
+            document.querySelector('.final-btn').style.display = 'none';
+            window.scrollTo(0, document.body.scrollHeight);
+            
+            // Shower of love
+            for(let i=0; i<50; i++) {
+                setTimeout(() => {
+                    const h = document.createElement('div');
+                    h.classList.add('heart-bg');
+                    h.innerHTML = '❤️';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.top = (window.scrollY + 200) + 'px';
+                    h.style.fontSize = '40px';
+                    document.body.appendChild(h);
+                }, i * 100);
+            }
+        }
+    </script>
 </body>
 </html>
