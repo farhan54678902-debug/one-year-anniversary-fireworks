@@ -1,43 +1,232 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jubayer Loves Rabeya ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hind+Siliguri:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff85a2;
+            --secondary: #fce4ec;
+            --dark: #c2185b;
+            --soft: #fff5f8;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--soft);
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Fixed Top Header */
+        .header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0; z-index: 1000;
+            text-align: center; font-family: 'Pacifico', cursive;
+            color: var(--dark); font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        section {
+            min-height: 100vh; padding: 100px 20px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; position: relative;
+        }
+
+        .card {
+            background: white; padding: 40px 30px;
+            border-radius: 30px; border: 2px solid var(--primary);
+            box-shadow: 0 15px 40px rgba(255, 133, 162, 0.2);
+            max-width: 650px; width: 95%;
+            opacity: 0; transform: translateY(50px);
+            transition: 1s all ease;
+        }
+
+        .card.active { opacity: 1; transform: translateY(0); }
+
+        /* Cute Baby Mochi Cat Styles */
+        .mochi-cat {
+            width: 150px; height: auto;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+
+        .cat-sticker { font-size: 80px; display: block; margin-bottom: 10px; }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--dark); margin: 10px 0; }
+        p { font-size: 1.2rem; line-height: 1.8; color: #555; }
+
+        /* Sorry Section */
+        .sorry-card { background: #fffafb; border: 3px dashed var(--primary); }
+
+        /* Gift Box */
+        .gift-btn {
+            font-size: 70px; cursor: pointer; transition: 0.3s;
+            display: inline-block; animation: shake 1s infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .hidden-msg { display: none; margin-top: 20px; padding: 15px; background: var(--secondary); border-radius: 15px; animation: fadeIn 1s; }
+
+        /* Floating Elements */
+        .floating {
+            position: fixed; pointer-events: none; z-index: -1;
+            animation: floatUp 5s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .final-btn {
+            background: var(--primary); color: white; border: none;
+            padding: 15px 40px; border-radius: 50px; font-size: 20px;
+            font-family: 'Pacifico', cursive; cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 133, 162, 0.4);
+        }
+
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="header">Jubayer ❤️ Rabeya</div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
-
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+    <section>
+        <div class="card active">
+            <div class="cat-sticker">🐱❤️🐱</div>
+            <h1>Happy 1 Year!</h1>
+            <p>রাবেয়া, জুবায়েরের এই ছোট্ট গিফটটি শুধু তোমার জন্য। নিচে নামো জান...</p>
+            <div style="font-size: 30px; animation: bounce 2s infinite;">👇</div>
         </div>
-    </div>
-  </script>
+    </section>
 
-  <script src="js/app.js"></script>
+    <section>
+        <div class="card reveal sorry-card">
+            <div class="cat-sticker">🥺🐾</div>
+            <h2>একটু ক্ষমা চাই...</h2>
+            <p>রাবেয়া, এই এক বছরে আমি হয়তো অনেক ভুল করেছি, তোমাকে কষ্ট দিয়েছি। জুবায়েরকে কি তার রাবেয়া মাফ করে দেবে না? আমার সব ভুল ক্ষমা করে দাও প্রিয়।</p>
+            <div class="cat-sticker" style="font-size: 50px;">🙏🌹</div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <h2>🎁 তোমার প্রথম গিফট</h2>
+            <p>বক্সটি টাচ করো...</p>
+            <div class="gift-btn" onclick="openGift(this)">🎁</div>
+            <div class="hidden-msg">
+                <div class="cat-sticker">🐱🥯</div>
+                <p><strong>"তুমি আমার জীবনের সবচেয়ে মিষ্টি অংশ!"</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal" style="background: var(--secondary);">
+            <div class="cat-sticker">🎀</div>
+            <h2>কেন তোমাকে ভালোবাসি?</h2>
+            <p>
+                ১. তোমার মায়াবী হাসি।<br>
+                ২. আমার ওপর তোমার অগাধ বিশ্বাস।<br>
+                ৩. তুমি যেভাবে জুবায়েরকে আগলে রাখো।
+            </p>
+            <div class="cat-sticker">😽💕</div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <h2>🎁 আরও একটি সারপ্রাইজ!</h2>
+            <div class="gift-btn" onclick="openGift(this)">💝</div>
+            <div class="hidden-msg">
+                <div class="cat-sticker">💍✨</div>
+                <p><strong>"আমি সারাজীবন তোমার হাতটা ধরে রাখতে চাই।"</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <h2>📜 ভালোবাসার চুক্তিপত্র</h2>
+            <p>১. রাবেয়া কখনো মন খারাপ করে থাকবে না।</p>
+            <p>২. জুবায়ের সব সময় রাবেয়ার খেয়াল রাখবে।</p>
+            <p>৩. আমাদের ঝগড়া হবে শুধু ভালোবাসার জন্য!</p>
+            <div class="cat-sticker">✍️🐾</div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card reveal">
+            <h1>শেষ কথা...</h1>
+            <div class="cat-sticker">🏡💖</div>
+            <p>রাবেয়া, আমি তোমাকে অনেক অনেক ভালোবাসি। সবসময় জুবায়েরের হয়ে থেকো।</p>
+            <br>
+            <button class="final-btn" onclick="grandSurprise()">একটু ক্লিক করো তো!</button>
+            <div id="final-wish" style="display:none; margin-top:30px;">
+                <h2 style="font-size: 3rem;">I Love You, Jaan!</h2>
+                <div class="cat-sticker" style="font-size: 100px;">🐱❤️🐱</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Reveal
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                if(card.getBoundingClientRect().top < window.innerHeight - 100) {
+                    card.classList.add('active', 'reveal');
+                }
+            });
+        });
+
+        // Gift Opening
+        function openGift(btn) {
+            btn.innerHTML = '✨';
+            btn.style.animation = 'none';
+            btn.nextElementSibling.style.display = 'block';
+        }
+
+        // Floating Hearts & Cats
+        setInterval(() => {
+            const el = document.createElement('div');
+            el.classList.add('floating');
+            el.innerHTML = ['❤️', '💖', '🐾', '🐱', '🌸'][Math.floor(Math.random()*5)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = (Math.random()*20 + 15) + 'px';
+            el.style.animationDuration = (Math.random()*3 + 3) + 's';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 5000);
+        }, 300);
+
+        // Final Celebration
+        function grandSurprise() {
+            document.getElementById('final-wish').style.display = 'block';
+            document.querySelector('.final-btn').style.display = 'none';
+            for(let i=0; i<50; i++) {
+                setTimeout(() => {
+                    const h = document.createElement('div');
+                    h.classList.add('floating');
+                    h.innerHTML = '❤️';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.fontSize = '40px';
+                    document.body.appendChild(h);
+                }, i * 100);
+            }
+        }
+    </script>
 </body>
 </html>
