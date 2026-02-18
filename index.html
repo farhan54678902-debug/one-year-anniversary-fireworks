@@ -1,43 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ethika - Ramadan Mubarak</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;600&display=swap');
+
+        body {
+            background-color: #FFF0F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Card Style */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            z-index: 10;
+            border: 2px solid #FFB7C5;
+        }
+
+        h1 { color: #FF69B4; font-size: 24px; }
+        p { color: #555; line-height: 1.6; font-size: 18px; }
+
+        /* Mochi Cat CSS (Peach) */
+        .cat {
+            width: 80px;
+            height: 60px;
+            background: #fff;
+            border-radius: 40px 40px 30px 30px;
+            position: absolute;
+            animation: float 3s infinite ease-in-out;
+            border: 2px solid #eee;
+        }
+
+        .cat.goma { background: #E0E0E0; } /* Goma is slightly grey */
+
+        /* Ears */
+        .cat::before, .cat::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            width: 20px;
+            height: 20px;
+            background: inherit;
+            border-radius: 50% 50% 0 0;
+        }
+        .cat::before { left: 10px; }
+        .cat::after { right: 10px; }
+
+        /* Eyes & Blush */
+        .eyes {
+            position: absolute;
+            top: 25px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        .eye { width: 6px; height: 6px; background: #333; border-radius: 50%; }
+        .blush {
+            position: absolute;
+            top: 35px;
+            width: 10px;
+            height: 5px;
+            background: #FFB7C5;
+            border-radius: 50%;
+        }
+
+        /* Positioning Cats */
+        #peach { top: 15%; left: 15%; }
+        #goma { top: 15%; right: 15%; animation-delay: 1.5s; }
+        
+        .baby { transform: scale(0.6); }
+        #baby1 { bottom: 15%; left: 10%; animation-delay: 0.5s; }
+        #baby2 { bottom: 20%; right: 15%; animation-delay: 1s; }
+        #baby3 { bottom: 10%; right: 40%; animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .ramadan-wish {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #FF1493;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
-
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
-
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
-        </div>
+    <div id="peach" class="cat">
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+        <div class="blush" style="left:10px"></div><div class="blush" style="right:10px"></div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <div id="goma" class="cat goma">
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+        <div class="blush" style="left:10px"></div><div class="blush" style="right:10px"></div>
+    </div>
+
+    <div id="baby1" class="cat baby">
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+    </div>
+    <div id="baby2" class="cat baby goma">
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+    </div>
+    <div id="baby3" class="cat baby">
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+    </div>
+
+    <div class="card">
+        <h1>প্রিয় ইথিকা ❤️</h1>
+        <p>দেখতে দেখতে এক বছর হয়ে গেল। এটা আমাদের দ্বিতীয় রমজান, কিন্তু এখন তুমি আমার থেকে অনেক দূরে।</p>
+        <p>যাই হোক, দূরত্ব যাই হোক না কেন, তুমি সবসময় আমার পাশেই আছো।</p>
+        <p class="ramadan-wish">রমজান মোবারক! 🌙</p>
+        <p style="font-size: 14px; color: #888;">— তোমার ফারহান</p>
+    </div>
+
 </body>
 </html>
