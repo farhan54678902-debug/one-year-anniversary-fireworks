@@ -1,43 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amader Golpo - Ethika & Farhan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            background: #fff0f3;
+            margin: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .main-wrapper {
+            max-width: 800px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 50px;
+            box-shadow: 0 30px 100px rgba(255, 105, 180, 0.4);
+            padding: 50px;
+            border: 5px solid #ffb6c1;
+            position: relative;
+        }
+
+        .slide { display: none; animation: fadeIn 1.5s ease-in-out; }
+        .slide.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .date-badge {
+            display: inline-block;
+            background: #ffecf2;
+            color: #d02090;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border: 2px solid #ffb6c1;
+            font-size: 16px;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; color: #d02090; font-size: 45px; text-align: center; margin-top: 0; }
+        
+        /* HUGE MOCHI CAT GIFS */
+        .mochi-gif { 
+            width: 250px; 
+            display: block; 
+            margin: 20px auto; 
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+        }
+        
+        .content {
+            font-size: 21px;
+            line-height: 2.2;
+            text-align: justify;
+            padding: 30px;
+            background: #fffafa;
+            border-radius: 30px;
+            border-left: 8px solid #ffb6c1;
+            white-space: pre-line;
+        }
+
+        .highlight { color: #ff1493; font-weight: 800; text-decoration: underline; }
+
+        .btn-nav { margin-top: 40px; display: flex; justify-content: center; gap: 25px; }
+
+        .btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .btn:hover { transform: scale(1.1) rotate(-2deg); box-shadow: 0 12px 25px rgba(255, 20, 147, 0.5); }
+
+        /* Celebration Screen */
+        #celebration {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff;
+            z-index: 10000;
+            text-align: center;
+            padding-top: 5vh;
+            animation: popUp 1s forwards;
+        }
+
+        @keyframes popUp { from { opacity: 0; } to { opacity: 1; } }
+
+        .kiss-mochi { width: 450px; max-width: 90%; margin: 30px 0; }
+
+        .sorry-box {
+            background: #ffe4e1;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #b00060;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="main-wrapper">
+        
+        <div class="slide active" id="s1">
+            <div class="date-badge">সেপ্টেম্বর, ২০১৯ - সেই জাদুকরী দিন</div>
+            <h1>শুরুটা যেখানে হয়েছিল...</h1>
+            <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" class="mochi-gif">
+            <div class="content">
+                Ethika, mone pore 2019 saler shei din-tir kotha? Ami tokhon khub-e choto chilam, ekdom-o bujhtam na bhalobasha ki. Ami shei din amader barir shirite boshe protibeshir sathe kotha bolchilam. Hothat tumi ar tomar bon ele—<span class="highlight">Samia Mehzabin Ethika</span>. 
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+                Lal skirt pora shei kishoritike dekhe amar moner bhitor ekta ochena maya toiri hoyechilo. Sheidin-i bujhechilam, tumi onno sobar moto nou. Tomar shei nam bola, shei misty bhab, sob kichu amar diary-te thaye kore niyechilo. Tokhon thekei shuru hoyechilo amar ek-torfa maya. Tomar jonno Dairy Milk pockete niye ghure beratam, kintu konodin-o deyar shahosh paini. 
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(2)">আরো পড়ুন...</button></div>
+        </div>
 
-  <div id="text-canvas">
-  </div>
+        <div class="slide" id="s2">
+            <div class="date-badge">৩০ নভেম্বর, ২০২১ - ভালোবাসার স্বীকৃতি</div>
+            <h1>অপেক্ষার অবসান...</h1>
+            <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" class="mochi-gif">
+            <div class="content">
+                Ami tokhon Dhakaye chilam, kintu amar mon pore thakto tomar kache. Shei 30/11/2021 tarikh-e mobile-e tomy moner kotha janiyechilam. Ki obishshashsho bhabe tumi jokhon bolle—"Ami-o tomar opekkhaye chilam", mone hoyechilo ami prithibir sobcheye shukhi manush. 
 
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+                Amader bhalobashar kotha gulo diary-te protiti pata jure lekha ache. Tomar deya shei <span class="highlight">bracelet-ta</span> ami aj-o amar hate pori, mone hoy tumi amake agle rakcho. Ar tomar deya shei mishti <span class="highlight">Salami</span>-r taka gulo amar kache kono daby upoharer cheye-o beshi. Amader Dairy Milk khawa, kotha bola, sob kichu aj-o smritite sotej hoye ache.
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(3)">পরের স্মৃতিতে যান</button></div>
+        </div>
+
+        <div class="slide" id="s3">
+            <div class="date-badge">রমজান ২০২৪ - মিষ্টি মায়া</div>
+            <h1>ফেলে আসা সুন্দর মুহূর্ত</h1>
+            <img src="https://media.tenor.com/Y36Wf3H89vIAAAAi/mochi-peach.gif" class="mochi-gif">
+            <div class="content">
+                Goto Ramadan-er kotha mone pore? Ki shundor din gulo chilam amader! Protiti sehri-r opekkhaye thaka, iftarer pore tomar sathe kotha bola, shara diner klanti tomar ekti mishti hashite dure hoye jeto. Amra koto kachakachi chilam tokhon. 
+
+                Kintu aj eito amader <span class="highlight">dwitiyo Ramadan</span>, kintu tumi amar theke onk dure. Somoy ebong poristhiti amader thik-i dure soralo, kintu amader mon-ke ki sora-te pereche? Protiti dowa-te ami shudhu tomy খুঁজি. Ei durotto ashole amader maya-ke aro bariye diyeche, protikhon ami shudhu tomar kotha-i bhabi.
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(4)">অতীতের ভুল ও ক্ষমা</button></div>
+        </div>
+
+        <div class="slide" id="s4">
+            <div class="date-badge">১৬ জুন, ২০২৫ - অনুতাপ</div>
+            <h1>I Am Sorry, Mayabi</h1>
+            <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="mochi-gif">
+            <div class="content">
+                Ethika, ami jani amar kichu bhol-er karone onk jaygay tomar respect kome geche. Ami mon theke <span class="highlight">khoma chachi</span> shei sob ghotonar jonno. Kintu bishshash koro, amar poristhiti-ta jokhon kharap chilam, tokhon ami khub-e osohay chilam. 
+
+                <div class="sorry-box">
+                    "Tomy haranor bhoy amake pagol kore diyechilo. Ami chaini amader bhalobashar opor kono kalo chaya poruk. Ami bujhi amar karone tomar kosto hoyeche, kintu ami shudhu tomy agle rakhte cheyechilam. Maaf kore diyo tomar ei Farhan-ke."
+                </div>
+                Ami tomake harate parbo na, tumi chara amar prithibi ekdom-o faka. Tomar kache ami onk rini hoye achi.
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(5)">আমার শেষ প্রস্তাব</button></div>
+        </div>
+
+        <div class="slide" id="s5">
+            <div class="date-badge">ফেব্রুয়ারি, ২০২৬ - অঙ্গীকার</div>
+            <h1>এক পবিত্র ভালোবাসা</h1>
+            <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" class="mochi-gif">
+            <div class="content">
+                Dekhte dekhte ek bochor hoye gelo. Ami chai tumi shobshomoy amar hoyei thako. Kintu ebar ami amader bhalobasha-ke onno bhabe dekhte chai. Ebar kono <span class="highlight">haram relationship</span> noy, borong amra duijon duijon-ke dur theke bhalobashbo. 
+
+                Amra duijon-ke duijon-er joggo banabo, Allah-r kache eke oporke chaibo, kintu kono bhul pothe paa barabo na. Ami chaini amader bhalobashaye kono pap thakuk. Tumi ki raji amar sathe ei pobitro poth-e cholte? Jekhane shudhu opekkhaye thakbe ar thakbe amar mulyoban mayabi.
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(6)">ইথিকা... শেষ প্রশ্ন</button></div>
+        </div>
+
+        <div class="slide" id="s6" style="text-align: center;">
+            <h1>মায়াবী... তুমি কি রাজি?</h1>
+            <img src="https://media.tenor.com/S6M_Lg4S6mUAAAAi/mochi-mochi-cat-peach-and-goma.gif" class="mochi-gif">
+            <p style="font-size: 26px; font-weight: bold; margin-bottom: 30px;">
+                Tumi ki raji amader ei bhalobasha-ke eibhabe agiye niye jete?
+            </p>
+            <div style="display: flex; justify-content: center; gap: 30px;">
+                <button class="btn" style="padding: 20px 60px; font-size: 24px;" onclick="showCelebration()">হ্যাঁ (Yes)</button>
+                <button id="noBtn" class="btn" style="background: #777; padding: 20px 60px; font-size: 24px;" onmouseover="moveNoBtn()">না (No)</button>
+            </div>
+            <p style="margin-top: 50px; color: #888;">Ramadan Mubarak! <br> — Ity, Tomar Farhan</p>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <div id="celebration">
+        <h1 style="font-size: 60px; color: #d02090; margin-top: 50px;">আলহামদুলিল্লাহ! ❤️</h1>
+        <img src="https://media.tenor.com/vH9vTf8e5vEAAAAi/mochi-mochi-cat-kiss.gif" class="kiss-mochi">
+        <h2 style="font-size: 35px; color: #ff1493;">Farhan-er Mayabi Raji hoyeche!</h2>
+        <p style="font-size: 24px; color: #555;">Congratulations to both of you! <br> Allah amader sofol korun.</p>
+        <button class="btn" style="margin-top: 30px;" onclick="location.reload()">আবার পড়ুন</button>
+    </div>
+
+    <script>
+        function nextSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(s => s.classList.remove('active'));
+            document.getElementById('s' + n).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function showCelebration() {
+            document.getElementById('celebration').style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        function moveNoBtn() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.clientWidth);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
 </body>
 </html>
