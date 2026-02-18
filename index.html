@@ -1,43 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের গল্পের শেষ পাতা - ফারহান ও ইথিকা</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            background: #fff0f3;
+            margin: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            color: #333;
+        }
+
+        .main-wrapper {
+            max-width: 700px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 182, 193, 0.5);
+            padding: 40px;
+            border: 2px solid #ffb6c1;
+            position: relative;
+        }
+
+        .slide { display: none; animation: slideUp 1s ease-out; }
+        .slide.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .date-header {
+            display: inline-block;
+            background: #ffecf2;
+            color: #d02090;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid #ffb6c1;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; color: #d02090; font-size: 36px; margin: 10px 0; }
+        
+        .mochi-gif { width: 160px; display: block; margin: 20px auto; }
+        
+        .content {
+            font-size: 19px;
+            line-height: 2;
+            text-align: justify;
+            white-space: pre-line;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .highlight { color: #ff1493; font-weight: 600; }
+
+        .btn-nav {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .btn-choice {
+            padding: 15px 40px;
+            margin: 10px;
+            font-size: 20px;
+        }
+
+        .sorry-box {
+            background: #fffafa;
+            border-left: 6px solid #ff1493;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        #final-question { text-align: center; }
+        
+        .floating-mochi {
+            position: fixed;
+            width: 80px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" class="floating-mochi" style="top: 10%; left: 5%;">
+    <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="floating-mochi" style="bottom: 10%; right: 5%;">
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
-
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+    <div class="main-wrapper">
+        
+        <div class="slide active" id="s1">
+            <div class="date-header">সেপ্টেম্বর, ২০১৯ - প্রথম দেখা</div>
+            <h1>আমাদের গল্পের শুরু...</h1>
+            <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" class="mochi-gif">
+            <div class="content">
+                ইথিকা, তোমার কি মনে পড়ে ২০১৯ সালের সেই দিনটা? আমি তখন অনেক ছোট ছিলাম। সিঁড়িতে বসে প্রতিবেশীর সাথে গল্প করছিলাম, হঠাৎ তুমি এলে। তোমার সেই লাল স্কার্ট পরা মুখটা আজও আমার চোখে ভাসে। সেইদিন শুধু তোমার নামটা জেনেছিলাম—সামিয়া মেহজাবিন ইথিকা। 
+                
+                তখনি আমার অবুঝ মনে একটা জায়গা করে নিয়েছিলে তুমি। সেই একতরফা মায়া যে কবে গভীর ভালোবাসায় রূপ নিয়েছে আমি বুঝতেও পারিনি। তোমার জন্য প্রতিদিন ডেইরি মিল্ক কেনা, আড়ালে থেকে তোমাকে দেখা—এসবই ছিল আমার দিনলিপি।
+            </div>
+            <div class="btn-nav">
+                <span></span>
+                <button class="btn" onclick="nextSlide(2)">আরো পড়ুন...</button>
+            </div>
         </div>
-    </div>
-  </script>
 
-  <script src="js/app.js"></script>
+        <div class="slide" id="s2">
+            <div class="date-header">৩০ নভেম্বর, ২০২১ - প্রপোজাল</div>
+            <h1>অপেক্ষার অবসান</h1>
+            <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" class="mochi-gif">
+            <div class="content">
+                ২০২১ সালে আমি যখন ঢাকায়, তখন মোবাইলে তোমায় আমার মনের কথা জানিয়েছিলাম। আমার বুক কাঁপছিল ভয়ে, যদি তুমি ফিরিয়ে দাও! কিন্তু তুমি যখন বললে—"আমিও তোমার অপেক্ষায় ছিলাম", সেই মুহূর্তটা ছিল আমার জীবনের শ্রেষ্ঠ পাওনা। 
+
+                আমাদের সেই শুরুর দিনগুলো কত রঙিন ছিল! একে অপরের প্রতি সেই টান, ছোট ছোট উপহার বিনিময়। তুমি যখন আমায় সেই <span class="highlight">ব্রেসলেটটা</span> দিলে, আমি মনে মনে ঠিক করেছিলাম এই হাত আমি কখনো ছাড়বো না। তোমার দেওয়া সেই সালামি আমি আজও দামী হীরের চেয়েও বেশি যত্নে রেখেছি।
+            </div>
+            <div class="btn-nav">
+                <button class="btn" style="background: #999;" onclick="nextSlide(1)">পিছনে যান</button>
+                <button class="btn" onclick="nextSlide(3)">পরের স্মৃতি</button>
+            </div>
+        </div>
+
+        <div class="slide" id="s3">
+            <div class="date-header">রমজান ২০২৪ - ফেলে আসা মুহূর্ত</div>
+            <h1>আগের সেই মিষ্টি রমজান</h1>
+            <img src="https://media.tenor.com/Y36Wf3H89vIAAAAi/mochi-peach.gif" class="mochi-gif">
+            <div class="content">
+                গত রমজানের কথা মনে পড়লে আজও ঠোঁটের কোণে হাসি ফুটে ওঠে। আমাদের একসাথে কাটানো সময়গুলো, সারাদিন রোজা রেখে ইফতারের পর তোমার সাথে সেই কথা বলা, সবকিছু কত সুন্দর ছিল! 
+
+                তখন আমরা কত কাছাকাছি ছিলাম। দূরত্ব বলতে কিছুই ছিল না। কিন্তু আজকের এই দ্বিতীয় রমজানে ভাগ্য আমাদের অনেক দূরে ঠেলে দিয়েছে। তবুও প্রতি রাতে সেহরির সময় কিংবা ইফতারের দোয়ায় আমি শুধু তোমাকেই খুঁজি। এই দূরত্বটা যেন আমাদের মায়াকে আরও বাড়িয়ে দিয়েছে।
+            </div>
+            <div class="btn-nav">
+                <button class="btn" style="background: #999;" onclick="nextSlide(2)">পিছনে যান</button>
+                <button class="btn" onclick="nextSlide(4)">ক্ষমা ও বাস্তবতা</button>
+            </div>
+        </div>
+
+        <div class="slide" id="s4">
+            <div class="date-header">১৬ জুন, ২০২৫ - সেই কঠিন সময়</div>
+            <h1>মন থেকে ক্ষমা চাইছি</h1>
+            <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="mochi-gif">
+            <div class="content">
+                ইথিকা, আমি জানি আমার কিছু ভুল পদক্ষেপের কারণে তোমার সম্মান ক্ষুণ্ণ হয়েছে। সবার কাছে তোমার ছোট হতে হয়েছে। এজন্য আমি আজীবন অনুতপ্ত থাকবো। কিন্তু বিশ্বাস করো, পরিস্থিতি এমন ছিল যে আমি অসহায় ছিলাম।
+
+                <div class="sorry-box">
+                    "আমি ক্ষমা চাচ্ছি তোমার কাছে, শুধু আমার ভুলের জন্য নয়, বরং তোমাকে দেওয়া কষ্টের জন্যও। আমার পরিস্থিতিটা যদি তুমি একবার বুঝতে, তবে হয়তো বুঝতে পারতে তোমাকে হারানোর ভয় আমাকে কতটা পাগল করে দিয়েছিল।"
+                </div>
+                আমি চাই না আমার কারণে তোমার মুখে কোনোদিন কোনো কালো ছায়া পড়ুক। আমি সবকিছু ঠিক করে দিতে চাই।
+            </div>
+            <div class="btn-nav">
+                <button class="btn" style="background: #999;" onclick="nextSlide(3)">পিছনে যান</button>
+                <button class="btn" onclick="nextSlide(5)">আমার একটি প্রস্তাব</button>
+            </div>
+        </div>
+
+        <div class="slide" id="s5">
+            <div class="date-header">ফেব্রুয়ারি, ২০২৬ - বর্তমান</div>
+            <h1>একটি নতুন শুরু...</h1>
+            <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" class="mochi-gif">
+            <div class="content">
+                দেখতে দেখতে এক বছর হয়ে গেল। আমরা এখন কেউ কারো কাছে নেই। কিন্তু আমি চাই তুমি সবসময় আমার হয়েই থাকো। তবে এবার কোনো <span class="highlight">হারাম রিলেশনশিপ</span> নয়। আমি চাই আমরা দুজন দুজনকে পবিত্রভাবে ভালোবাসবো। 
+
+                আমরা দূরে থাকবো, নিজেদের গড়ে তুলবো, আল্লাহর কাছে একে অপরকে চাইবো। আমরা কোনো ভুল পথে পা বাড়াবো না, শুধু মনের মায়া দিয়ে একে অপরকে আগলে রাখবো। এটাই কি আমাদের ভালোবাসার আসল সার্থকতা নয়? আমি শুধু তোমারই থাকতে চাই এবং তোমাকেও আমার করে রাখতে চাই।
+            </div>
+            <div class="btn-nav">
+                <button class="btn" style="background: #999;" onclick="nextSlide(4)">পিছনে যান</button>
+                <button class="btn" onclick="nextSlide(6)">শেষ প্রশ্ন</button>
+            </div>
+        </div>
+
+        <div class="slide" id="s6" style="text-align: center;">
+            <h1>মায়াবী... তুমি কি রাজি?</h1>
+            <img src="https://media.tenor.com/S6M_Lg4S6mUAAAAi/mochi-mochi-cat-peach-and-goma.gif" class="mochi-gif">
+            <p style="font-size: 22px; margin-bottom: 30px;">
+                তুমি কি রাজি আমার সাথে এই পবিত্র ভালোবাসার পথে হাঁটতে? যেখানে আমরা দূরে থেকেও একে অপরের থাকবো...
+            </p>
+            <div id="final-choice">
+                <button class="btn btn-choice" onclick="alert('আলহামদুলিল্লাহ! তোমার ফারহান সবসময় তোমারই থাকবে।')">হ্যাঁ (Yes)</button>
+                <button class="btn btn-choice" style="background: #555;" onmouseover="moveBtn(this)">না (No)</button>
+            </div>
+            <p style="margin-top: 40px; color: #888;">রমজান মোবারক! <br> ইতি, তোমার ফারহান</p>
+        </div>
+
+    </div>
+
+    <script>
+        function nextSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(s => s.classList.remove('active'));
+            document.getElementById('s' + n).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function moveBtn(btn) {
+            const x = Math.random() * (window.innerWidth - btn.clientWidth);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
 </body>
 </html>
