@@ -1,43 +1,208 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের মায়ার জগত - ফারহান ও ইথিকা</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;600&family=Dancing+Script:wght@700&display=swap');
+
+        body, html { margin: 0; padding: 0; overflow: hidden; background: #1a1a1a; font-family: 'Hind Siliguri', sans-serif; }
+        
+        canvas { display: block; cursor: crosshair; }
+
+        /* Story Overlay */
+        #story-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; display: flex; justify-content: center; align-items: center;
+        }
+
+        .diary-card {
+            width: 85%; max-width: 500px; background: rgba(255, 255, 255, 0.95);
+            padding: 30px; border-radius: 30px; border: 4px solid #ff69b4;
+            text-align: center; display: none; pointer-events: auto;
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
+            animation: emerge 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes emerge { from { opacity: 0; transform: scale(0.5) rotate(-10deg); } }
+
+        .btn {
+            background: #ff1493; color: white; border: none; padding: 12px 30px;
+            border-radius: 50px; cursor: pointer; font-size: 18px; margin-top: 15px;
+            font-weight: bold; transition: 0.3s;
+        }
+
+        .btn:hover { background: #d02090; transform: scale(1.1); }
+
+        #tutorial {
+            position: fixed; top: 20px; width: 100%; text-align: center;
+            color: #ffb6c1; font-size: 18px; letter-spacing: 1px;
+        }
+
+        /* Final Kiss */
+        #celebration {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 200; display: none; text-align: center; padding-top: 10vh;
+        }
+        .kiss-gif { width: 320px; margin-bottom: 20px; }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div id="tutorial">মোচি ক্যাট দুটিকে মেলাতে মেজের ভেতর দিয়ে ড্র্যাগ করো... ❤️</div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <canvas id="canvas"></canvas>
 
-  <div id="text-canvas">
-  </div>
+    <div id="story-layer">
+        <div class="diary-card" id="card1">
+            <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" width="120">
+            <h2 style="color: #d02090;">২০১৯ - সেই মায়াবী সিঁড়ি</h2>
+            <p style="font-size: 18px; line-height: 1.8;">
+                ইথিকা, মনে পড়ে সেই প্রতিবেশীর সাথে কথা বলার সময় হঠাৎ লাল স্কার্টে তোমার উদয়? Samia Mehzabin Ethika—নামটা সেদিন থেকে আমার আত্মার অংশ হয়ে গেল। তোমার জন্য ডেইরি মিল্ক পকেটে নিয়ে ঘোরা শুরু হলো সেই দিন থেকে। 
+            </p>
+            <button class="btn" onclick="closeCard('card1')">পরের পথ খুঁজি...</button>
+        </div>
 
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+        <div class="diary-card" id="card2">
+            <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" width="120">
+            <h2 style="color: #d02090;">৩০/১১/২০২১ - পূর্ণতা</h2>
+            <p style="font-size: 18px; line-height: 1.8;">
+                তুমি যখন বললে তুমিও অপেক্ষায় ছিলে, আমার আকাশটা সেদিন নীল থেকে গোলাপি হয়ে গিয়েছিল। তোমার দেওয়া সেই ব্রেসলেটটা আজও আমার অস্তিত্বে মিশে আছে, যেমনটা আছে তোমার মিষ্টি সালামি। আমাদের সেই প্রথম ডেইরি মিল্ক শেয়ারিং কি মনে পড়ে?
+            </p>
+            <button class="btn" onclick="closeCard('card2')">আরো গভীরে যাই...</button>
+        </div>
+
+        <div class="diary-card" id="card3">
+            <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" width="120">
+            <h2 style="color: #d02090;">ক্ষমা ও নতুন এক পৃথিবী</h2>
+            <p style="font-size: 18px; line-height: 1.8;">
+                আমি জানি ১৬ই জুন ২০২৫ এবং তার আশেপাশে আমার কারণে তোমার সম্মান ধুলোয় মিশেছিল। আমি পরিস্থিতির কাছে বন্দী ছিলাম, তোমাকে হারানোর ভয়ে দিশেহারা হয়েছিলাম। 
+                আমি চাই এবার আমাদের ভালোবাসা হোক <b>পবিত্র</b>। কোনো হারাম সম্পর্কে না জড়িয়ে আমরা দূরে থেকেও একে অপরের হয়ে থাকবো। তুমি কি রাজী মায়াবী?
+            </p>
+            <button class="btn" onclick="showWin()">হ্যাঁ, আমি রাজী!</button>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <div id="celebration">
+        <h1 style="color: #d02090; font-family: 'Dancing Script', cursive; font-size: 50px;">আলহামদুলিল্লাহ!</h1>
+        <img src="https://media.tenor.com/vH9vTf8e5vEAAAAi/mochi-mochi-cat-kiss.gif" class="kiss-gif">
+        <h2 style="color: #ff1493;">ইথিকা ও ফারহান</h2>
+        <p style="font-size: 20px;">আমাদের ভালোবাসা এখন থেকে পবিত্র পথে। রমজান মোবারক!</p>
+        <button class="btn" onclick="location.reload()">আবার শুরু করি</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let activeCard = null;
+        let catsArranged = false;
+        const particles = [];
+        
+        const cat1 = { x: 50, y: 50, size: 50, emoji: '🐱', color: '#ffb6c1' };
+        const cat2 = { x: canvas.width - 70, y: canvas.height - 70, size: 50, emoji: '🐰', color: '#ffecf2' };
+        
+        const nodes = [
+            { x: canvas.width * 0.3, y: canvas.height * 0.4, msg: 'card1', collected: false, icon: '🍫' },
+            { x: canvas.width * 0.7, y: canvas.height * 0.2, msg: 'card2', collected: false, icon: '📿' },
+            { x: canvas.width * 0.5, y: canvas.height * 0.8, msg: 'card3', collected: false, icon: '🌙' }
+        ];
+
+        let dragging = false;
+
+        function draw() {
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Connection Path
+            if (dragging) {
+                ctx.strokeStyle = 'rgba(255, 105, 180, 0.5)';
+                ctx.setLineDash([5, 10]);
+                ctx.beginPath();
+                ctx.moveTo(cat1.x + 25, cat1.y + 25);
+                ctx.lineTo(cat2.x + 25, cat2.y + 25);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // Draw Memories (Nodes)
+            nodes.forEach(node => {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 40, 0, Math.PI * 2);
+                ctx.fillStyle = node.collected ? '#ff1493' : '#333';
+                ctx.fill();
+                ctx.strokeStyle = '#ff69b4';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.font = "30px Arial";
+                ctx.fillText(node.icon, node.x - 15, node.y + 10);
+            });
+
+            // Draw Cats
+            ctx.font = "50px Arial";
+            ctx.fillText(cat1.emoji, cat1.x, cat1.y + 40);
+            ctx.fillText(cat2.emoji, cat2.x, cat2.y + 40);
+
+            requestAnimationFrame(draw);
+        }
+
+        canvas.addEventListener('mousedown', startDrag);
+        canvas.addEventListener('mousemove', drag);
+        canvas.addEventListener('mouseup', endDrag);
+        canvas.addEventListener('touchstart', e => startDrag(e.touches[0]));
+        canvas.addEventListener('touchmove', e => drag(e.touches[0]));
+        canvas.addEventListener('touchend', endDrag);
+
+        function startDrag(e) {
+            if (Math.hypot(e.clientX - cat1.x, e.clientY - cat1.y) < 60) dragging = true;
+        }
+
+        function drag(e) {
+            if (!dragging || activeCard) return;
+            cat1.x = e.clientX - 25;
+            cat1.y = e.clientY - 25;
+
+            // Check Collision with Memories
+            nodes.forEach(node => {
+                if (!node.collected && Math.hypot(cat1.x - node.x, cat1.y - node.y) < 50) {
+                    node.collected = true;
+                    showCard(node.msg);
+                    dragging = false;
+                }
+            });
+
+            // Check Collision with Cat 2
+            if (Math.hypot(cat1.x - cat2.x, cat1.y - cat2.y) < 50) {
+                if (nodes.every(n => n.collected)) {
+                    // All collected! Win state is handled in the last card.
+                } else {
+                    alert("আগে সব স্মৃতিগুলো স্পর্শ করো!");
+                    cat1.x = 50; cat1.y = 50;
+                    dragging = false;
+                }
+            }
+        }
+
+        function endDrag() { dragging = false; }
+
+        function showCard(id) {
+            activeCard = id;
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeCard(id) {
+            document.getElementById(id).style.display = 'none';
+            activeCard = null;
+        }
+
+        function showWin() {
+            document.getElementById('celebration').style.display = 'block';
+        }
+
+        draw();
+    </script>
 </body>
 </html>
