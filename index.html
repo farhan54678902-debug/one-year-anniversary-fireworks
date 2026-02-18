@@ -1,43 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethika's Adventure ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            background: #ffe4e1;
+            font-family: 'Hind Siliguri', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        .game-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 4px solid #ffb6c1;
+        }
+
+        .screen { display: none; animation: zoomIn 0.5s; }
+        .screen.active { display: block; }
+
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        h1 { font-family: 'Dancing Script', cursive; color: #d02090; font-size: 35px; }
+        
+        /* Mochi Cats Playing */
+        .mochi-playing { width: 180px; margin: 10px; }
+
+        /* Memory Game Styles */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px auto;
+            width: 300px;
+        }
+        .card {
+            width: 90px; height: 90px;
+            background: #ffb6c1;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: transparent;
+        }
+        .card.flipped { background: white; color: black; border: 2px solid #ffb6c1; }
+
+        /* Puzzle Message */
+        .puzzle-input {
+            padding: 10px; font-size: 18px; border-radius: 10px; border: 2px solid #ffb6c1; margin-top: 10px;
+        }
+
+        .btn {
+            background: #ff69b4; color: white; border: none; padding: 12px 25px;
+            border-radius: 20px; cursor: pointer; font-size: 18px; margin-top: 20px;
+        }
+
+        .diary-text { font-size: 18px; line-height: 1.6; color: #444; padding: 15px; text-align: justify; }
+        
+        .hidden-msg { display: none; background: #fff0f5; padding: 10px; border-radius: 10px; margin-top: 10px; border: 1px dashed #ff1493; }
+
+        /* Final Kiss */
+        #final-kiss { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 100; padding-top: 50px; }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="game-container screen active" id="stage1">
+        <h1>Hi My Mayabi! ❤️</h1>
+        <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" class="mochi-playing">
+        <p>ইথিকা, আজ আমাদের ১ বছর পূর্ণ হলো। তোমার জন্য কিছু সারপ্রাইজ আছে। কিন্তু সেগুলো দেখতে হলে তোমাকে ৩টি গেম জিততে হবে! রাজি?</p>
+        <button class="btn" onclick="nextStage(2)">চলো খেলি!</button>
+    </div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <div class="game-container screen" id="stage2">
+        <div class="date-badge" style="background: #ffecf2; padding: 5px 15px; border-radius: 20px; color: #d02090;">Level 1: Memory Match</div>
+        <p>সবগুলো মোচি কার্ড মেলাও আমাদের প্রথম দেখা (২০১৯) এর স্মৃতি আনলক করতে!</p>
+        <div class="grid" id="grid"></div>
+        
+        <div id="memory-msg" class="diary-text hidden-msg">
+            <b>স্মৃতি ২০১৯:</b> সেই সিঁড়িতে লাল স্কার্ট পরা তোমাকে দেখা। Samia Mehzabin Ethika নামটা সেদিন থেকেই ডায়েরিতে। তোমার জন্য ডেইরি মিল্ক কিনে পকেটে নিয়ে ঘোরা শুরু হলো...
+        </div>
+        <button class="btn" id="next2" style="display:none;" onclick="nextStage(3)">পরের লেভেল</button>
+    </div>
 
-  <div id="text-canvas">
-  </div>
+    <div class="game-container screen" id="stage3">
+        <h1>Level 2: উপহারের কোড</h1>
+        <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" class="mochi-playing">
+        <p>আমি সবসময় তোমার দেওয়া কোন জিনিসটা হাতে পরে থাকি?</p>
+        <input type="text" id="puzzleInput" class="puzzle-input" placeholder="উত্তর দাও...">
+        <button class="btn" onclick="checkPuzzle()">চেক করো</button>
 
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+        <div id="puzzle-msg" class="diary-text hidden-msg">
+            <b>উপহার ও সালামি:</b> একদম ঠিক! ব্রেসলেট আর তোমার দেওয়া সেই সালামি আমার কাছে পৃথিবীর সবচেয়ে দামী জিনিস। গত রমজানের সেই মুহূর্তগুলো আজও খুব মিস করি।
+        </div>
+        <button class="btn" id="next3" style="display:none;" onclick="nextStage(4)">পরের লেভেল</button>
+    </div>
+
+    <div class="game-container screen" id="stage4">
+        <h1>Level 3: সরি মায়াবী...</h1>
+        <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="mochi-playing">
+        <div class="diary-text">
+            ইথিকা, ১৬ জুন ২০২৫ এর সেই দিনগুলোর জন্য আমি মন থেকে সরি। আমার জন্য তোমার রেসপেক্ট কমেছে, কিন্তু বিশ্বাস করো আমি তোমাকে হারানোর ভয়ে পাগল ছিলাম। 
+            <br><br>
+            এখন আমি চাই আমাদের ভালোবাসা হোক <b>পবিত্র</b>। দূরে থাকবো, নিজেদের গড়ে তুলবো, কোনো হারাম সম্পর্কে জড়াবো না। তুমি কি রাজি?
+        </div>
+        <div style="display: flex; justify-content: center; gap: 20px;">
+            <button class="btn" onclick="showFinal()">হ্যাঁ, আমি রাজি!</button>
+            <button class="btn" style="background: #777;" onmouseover="moveBtn(this)">না</button>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <div id="final-kiss">
+        <h1>আলহামদুলিল্লাহ! ❤️</h1>
+        <img src="https://media.tenor.com/vH9vTf8e5vEAAAAi/mochi-mochi-cat-kiss.gif" style="width: 300px;">
+        <h2>ফারহানের মায়াবী রাজি হয়েছে!</h2>
+        <p>রমজান মোবারক ইথিকা। আমরা ইনশাআল্লাহ সবসময় এক থাকবো।</p>
+        <button class="btn" onclick="location.reload()">আবার শুরু থেকে</button>
+    </div>
+
+    <script>
+        function nextStage(n) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('stage' + n).classList.add('active');
+        }
+
+        // Memory Game Logic
+        const icons = ['🍫', '🍫', '📿', '📿', '🌙', '🌙'];
+        let cards = icons.sort(() => Math.random() - 0.5);
+        const grid = document.getElementById('grid');
+        let flippedCards = [];
+        let matchedCount = 0;
+
+        cards.forEach((icon, i) => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = icon;
+            card.onclick = () => {
+                if(flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                    card.classList.add('flipped');
+                    flippedCards.push(card);
+                    if(flippedCards.length === 2) {
+                        if(flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
+                            matchedCount += 2;
+                            flippedCards = [];
+                            if(matchedCount === icons.length) {
+                                document.getElementById('memory-msg').style.display = 'block';
+                                document.getElementById('next2').style.display = 'inline-block';
+                            }
+                        } else {
+                            setTimeout(() => {
+                                flippedCards.forEach(c => c.classList.remove('flipped'));
+                                flippedCards = [];
+                            }, 1000);
+                        }
+                    }
+                }
+            };
+            grid.appendChild(card);
+        });
+
+        // Puzzle Logic
+        function checkPuzzle() {
+            const val = document.getElementById('puzzleInput').value;
+            if(val.includes('ব্রেসলেট') || val.toLowerCase().includes('bracelet')) {
+                document.getElementById('puzzle-msg').style.display = 'block';
+                document.getElementById('next3').style.display = 'inline-block';
+            } else {
+                alert("ভুল উত্তর! মনে করো আমি হাতে কী পরি?");
+            }
+        }
+
+        function showFinal() {
+            document.getElementById('final-kiss').style.display = 'block';
+        }
+
+        function moveBtn(btn) {
+            btn.style.position = 'absolute';
+            btn.style.left = Math.random() * 80 + '%';
+            btn.style.top = Math.random() * 80 + '%';
+        }
+    </script>
 </body>
 </html>
