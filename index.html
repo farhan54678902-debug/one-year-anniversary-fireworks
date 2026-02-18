@@ -1,43 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইথিকার স্পেশাল গেম ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Hind Siliguri', sans-serif;
+            background: #ffe4e1;
+        }
+
+        #gameCanvas {
+            display: block;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+        }
+
+        /* UI Elements */
+        #ui-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        .message-card {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 25px;
+            border: 5px solid #ffb6c1;
+            text-align: center;
+            display: none;
+            pointer-events: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp { from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } }
+
+        .btn {
+            background: #ff69b4; color: white; border: none; padding: 12px 25px;
+            border-radius: 20px; cursor: pointer; font-size: 18px; margin-top: 15px;
+            pointer-events: auto;
+        }
+
+        .highlight { color: #d02090; font-weight: bold; }
+
+        #start-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 100;
+        }
+
+        .mochi-run { width: 150px; }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div id="start-screen">
+        <h1 style="color: #d02090; font-family: 'Dancing Script', cursive; font-size: 40px;">Ethika's Memory Run ❤️</h1>
+        <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" class="mochi-run">
+        <p style="padding: 0 20px; text-align: center;">ইথিকা, মোচি ক্যাট-কে টাচ করে ড্র্যাগ করো এবং সব স্মৃতি সংগ্রহ করো!</p>
+        <button class="btn" onclick="startGame()">গেম শুরু করো</button>
+    </div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <canvas id="gameCanvas"></canvas>
 
-  <div id="text-canvas">
-  </div>
+    <div id="ui-layer">
+        <div class="message-card" id="msg1">
+            <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" width="120">
+            <h3>স্মৃতি: ২০১৯</h3>
+            <p>সেই সিঁড়িতে লাল স্কার্ট পরা তোমাকে প্রথম দেখা। <span class="highlight">Samia Mehzabin Ethika</span> নামটা সেদিন থেকেই ডায়েরিতে। ডেইরি মিল্ক দেওয়ার সেই ভয় আর মায়া আজও আমার মনে পড়ে।</p>
+            <button class="btn" onclick="resumeGame('msg1')">চলতে থাকো!</button>
+        </div>
 
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+        <div class="message-card" id="msg2">
+            <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" width="120">
+            <h3>বিশেষ উপহার</h3>
+            <p>তোমার দেওয়া সেই <span class="highlight">ব্রেসলেট</span> আজও আমার হাতে। আর তোমার সেই সালামি! পৃথিবীর কোনো দামী জিনিস এগুলোর সমান হবে না। গত রমজানের মিষ্টি ইফতারের স্মৃতিগুলো আজ বড্ড মিস করি।</p>
+            <button class="btn" onclick="resumeGame('msg2')">আরো কিছু আছে...</button>
+        </div>
+
+        <div class="message-card" id="msg3">
+            <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" width="120">
+            <h3>আই এম সরি, মায়াবী</h3>
+            <p>১৬ জুন ২০২৫ এর সেই দিনগুলোর জন্য আমি লজ্জিত। তোমার সম্মানে আঘাত লেগেছে আমার জন্য, মাফ করে দিও। আমি চাই এবার আমাদের ভালোবাসা হোক <span class="highlight">পবিত্র</span>। দূরে থেকেও আমরা একে অপরের থাকবো। তুমি কি রাজী?</p>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button class="btn" onclick="winGame()">হ্যাঁ, আমি রাজী!</button>
+            </div>
+        </div>
+
+        <div class="message-card" id="win-screen">
+            <img src="https://media.tenor.com/vH9vTf8e5vEAAAAi/mochi-mochi-cat-kiss.gif" width="250">
+            <h1>আলহামদুলিল্লাহ! ❤️</h1>
+            <p>ফারহানের মায়াবী রাজী হয়েছে! আমাদের ভালোবাসা পবিত্র হোক।</p>
+            <button class="btn" onclick="location.reload()">আবার খেলো</button>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let gameActive = false;
+        let score = 0;
+        const player = { x: 50, y: canvas.height/2, size: 60, speed: 5 };
+        const items = [];
+        const emojis = ['🍫', '📿', '🌙'];
+        let currentLevel = 0;
+
+        function startGame() {
+            document.getElementById('start-screen').style.display = 'none';
+            gameActive = true;
+            spawnItem();
+            animate();
+        }
+
+        function spawnItem() {
+            if (currentLevel < 3) {
+                items.push({
+                    x: canvas.width + 50,
+                    y: Math.random() * (canvas.height - 100) + 50,
+                    type: emojis[currentLevel],
+                    id: currentLevel + 1
+                });
+            }
+        }
+
+        function animate() {
+            if (!gameActive) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Clouds/Background elements (optional decoration)
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.arc(100, 100, 40, 0, Math.PI*2);
+            ctx.fill();
+
+            // Draw Player (Mochi Cat Head)
+            ctx.font = "60px Arial";
+            ctx.fillText("🐱", player.x, player.y);
+
+            // Draw Items
+            items.forEach((item, index) => {
+                item.x -= 4;
+                ctx.font = "40px Arial";
+                ctx.fillText(item.type, item.x, item.y);
+
+                // Collision Detection
+                let dx = player.x - item.x;
+                let dy = player.y - item.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 50) {
+                    gameActive = false;
+                    document.getElementById('msg' + item.id).style.display = 'block';
+                    items.splice(index, 1);
+                }
+
+                if (item.x < -50) {
+                    items.splice(index, 1);
+                    spawnItem();
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        function resumeGame(msgId) {
+            document.getElementById(msgId).style.display = 'none';
+            currentLevel++;
+            gameActive = true;
+            spawnItem();
+            animate();
+        }
+
+        function winGame() {
+            document.getElementById('msg3').style.display = 'none';
+            document.getElementById('win-screen').style.display = 'block';
+        }
+
+        // Controls
+        canvas.addEventListener('mousemove', (e) => {
+            if(gameActive) {
+                player.y = e.clientY;
+                player.x = e.clientX;
+            }
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if(gameActive) {
+                e.preventDefault();
+                player.y = e.touches[0].clientY;
+                player.x = e.touches[0].clientX;
+            }
+        }, {passive: false});
+
+    </script>
 </body>
 </html>
