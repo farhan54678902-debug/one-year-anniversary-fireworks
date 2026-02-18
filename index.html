@@ -1,43 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের গল্পের এক বছর - ফারহান ও ইথিকা</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;600&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            background-color: #fff0f3;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Floating Mochi Cats */
+        .mochi {
+            position: fixed;
+            width: 70px;
+            z-index: 100;
+            pointer-events: none;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(8deg); }
+        }
+
+        .container {
+            width: 85%;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 40px;
+            padding: 35px;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            border: 3px solid #ffb6c1;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Slide Transition */
+        .slide {
+            display: none;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .slide.active { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d02090;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .diary-content {
+            font-size: 19px;
+            color: #444;
+            line-height: 1.7;
+            margin: 15px 0;
+        }
+
+        .highlight { color: #ff1493; font-weight: bold; border-bottom: 2px dashed #ff1493; }
+
+        .btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5); }
+
+        .sticker { width: 130px; margin: 15px 0; border-radius: 15px; }
+        
+        .memory-icon { font-size: 40px; display: block; margin-bottom: 10px; }
+
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" class="mochi" style="top:5%; left:5%;">
+    <img src="https://media.tenor.com/S6M_Lg4S6mUAAAAi/mochi-mochi-cat-peach-and-goma.gif" class="mochi" style="bottom:5%; right:5%;">
+    <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="mochi" style="top:15%; right:5%;">
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
-
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+    <div class="container">
+        
+        <div class="slide active" id="s1">
+            <span class="memory-icon">🌙</span>
+            <h1>রমজান মোবারক, ইথিকা</h1>
+            <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" class="sticker">
+            <p class="diary-content">
+                আজ আমাদের <span class="highlight">দ্বিতীয় রমজান</span>। দেখতে দেখতে একটা বছর কীভাবে কেটে গেল! যদিও আজ তুমি দূরে, কিন্তু আমার ডায়েরির পাতায় তুমি আছো সবসময়।
+            </p>
+            <button class="btn" onclick="nextSlide(2)">স্মৃতিগুলো দেখি? ✨</button>
         </div>
-    </div>
-  </script>
 
-  <script src="js/app.js"></script>
+        <div class="slide" id="s2">
+            <span class="memory-icon">📿</span>
+            <h1>তোমার দেওয়া সেই ব্রেসলেট</h1>
+            <p class="diary-content">
+                তোমার দেওয়া সেই <span class="highlight">ব্রেসলেটটা</span> আজও আমার কাছে সবচেয়ে দামী উপহার। এটা যখনই দেখি, মনে হয় আমার হাতটা তুমি ধরে আছো। তোমার ছোঁয়া যেন মিশে আছে এতে।
+            </p>
+            <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" class="sticker">
+            <br>
+            <button class="btn" onclick="nextSlide(3)">আরো আছে...</button>
+        </div>
+
+        <div class="slide" id="s3">
+            <span class="memory-icon">💵</span>
+            <h1>মিষ্টি সালামি ও ডেইরি মিল্ক</h1>
+            <p class="diary-content">
+                তোমার দেওয়া সেই <span class="highlight">সালামি</span> আর আমার দেওয়া ডেইরি মিল্ক—সবই আমাদের ছোট ছোট আনন্দের অংশ ছিল। ডায়েরির পাতায় সেই টাকা আর স্মৃতিগুলো আমি আগলে রেখেছি।
+            </p>
+            <img src="https://media.tenor.com/Y36Wf3H89vIAAAAi/mochi-peach.gif" class="sticker">
+            <br>
+            <button class="btn" onclick="nextSlide(4)">আমাদের সেই দিন...</button>
+        </div>
+
+        <div class="slide" id="s4">
+            <span class="memory-icon">💖</span>
+            <h1>অপেক্ষার অবসান</h1>
+            <p class="diary-content">
+                সেই ৩০/১১/২০২১ তারিখের কথা কি মনে পড়ে? যখন তুমি বললে—<span class="highlight">"আমিও তোমার অপেক্ষায় ছিলাম"</span>। আমার সেই একতরফা মায়া সেদিন পূর্ণতা পেয়েছিল।
+            </p>
+            <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="sticker">
+            <br>
+            <button class="btn" onclick="nextSlide(5)">শেষ কথা ❤️</button>
+        </div>
+
+        <div class="slide" id="s5">
+            <span class="memory-icon">💌</span>
+            <h1>সবসময় তোমারই</h1>
+            <p class="diary-content">
+                দূরত্ব আমাদের আলাদা করতে পারবে না। আমার ডায়েরির প্রতিটি পাতায় যেমন তুমি আছো, তেমনি আমার প্রার্থনাতেও আছো। খুব ভালো থেকো আমার ইথিকা।
+            </p>
+            <h3 style="color: #d02090; font-family: 'Dancing Script'; font-size: 30px;">I Love You Always...</h3>
+            <p style="font-weight: bold;">— তোমার ফারহান</p>
+            <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" width="100">
+            <br>
+            <button class="btn" onclick="nextSlide(1)">আবার শুরু থেকে</button>
+        </div>
+
+    </div>
+
+    <script>
+        function nextSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(s => s.classList.remove('active'));
+            document.getElementById('s' + n).classList.add('active');
+        }
+    </script>
 </body>
 </html>
