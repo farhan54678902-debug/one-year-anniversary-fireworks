@@ -1,43 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের ডায়েরির শেষ পাতা - ফারহান ও ইথিকা</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            background: #fff0f3;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            color: #333;
+        }
+
+        /* Full Page Container */
+        .wrapper {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 40px 100px rgba(255, 105, 180, 0.4);
+            padding: 60px;
+            border: 6px solid #ffb6c1;
+            position: relative;
+        }
+
+        .slide { display: none; animation: fadeIn 1.5s ease; }
+        .slide.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* MOCHI CAT STYLING - BIG & VISIBLE */
+        .mochi-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .mochi-gif {
+            width: 280px; /* অনেক বড় করে দেওয়া হলো */
+            border-radius: 20px;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; color: #d02090; font-size: 48px; text-align: center; }
+        
+        .content-box {
+            font-size: 22px;
+            line-height: 2.3;
+            text-align: justify;
+            background: #fffafa;
+            padding: 40px;
+            border-radius: 30px;
+            border-left: 10px solid #ff1493;
+            white-space: pre-line;
+        }
+
+        .highlight { color: #ff1493; font-weight: 800; border-bottom: 2px solid #ff1493; }
+
+        .btn-nav {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.3);
+            transition: 0.4s;
+        }
+
+        .btn:hover { transform: scale(1.1); box-shadow: 0 15px 30px rgba(255, 20, 147, 0.5); }
+
+        .sorry-note {
+            background: #ffe4e1;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px dashed #d02090;
+            font-style: italic;
+            color: #b00060;
+        }
+
+        /* Final Celebration Screen */
+        #final-screen {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 9999;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .kissing-mochi { width: 450px; margin: 30px 0; }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="wrapper">
+        
+        <div class="slide active" id="s1">
+            <h1>শুরুটা যেখানে হয়েছিল (২০১৯)</h1>
+            <div class="mochi-container">
+                <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="mochi-gif" alt="Mochi Cat">
+            </div>
+            <div class="content-box">
+                ইথিকা, মনে পড়ে ২০১৯ সালের সেই জাদুকরী দিনটির কথা? আমি তখন কিছুই বুঝতাম না। আমাদের বাড়ির সিঁড়িতে বসে যখন প্রতিবেশীর সাথে কথা বলছিলাম, হঠাৎ তুমি তোমার বোনের সাথে আমার সামনে এলে। 
+                
+                সেই মুহূর্তেই আমার পৃথিবীটা থমকে গিয়েছিল। লাল স্কার্ট পরা সেই ছোট্ট মায়াবী মেয়েটিকে দেখে আমার ভেতরে যে কী অদ্ভুত এক অনুভূতি হয়েছিল, তা আজও ভাষায় প্রকাশ করা সম্ভব নয়। তোমার নামটা সেদিন জেনেছিলাম—<span class="highlight">সামিয়া মেহজাবিন ইথিকা</span>। তখন থেকেই আমার ডায়েরির পাতায় তোমার নাম লেখা শুরু। তোমাকে এক পলক দেখার জন্য কত বাহানা খুঁজতাম, তোমার জন্য ডেইরি মিল্ক পকেটে নিয়ে ঘুরতাম, কিন্তু ভয়ে দেওয়া হতো না।
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(2)">আরো গভীরে যান...</button></div>
+        </div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+        <div class="slide" id="s2">
+            <h1>অপেক্ষার অবসান (৩০/১১/২০২১)</h1>
+            <div class="mochi-container">
+                <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" class="mochi-gif" alt="Mochi Cat">
+            </div>
+            <div class="content-box">
+                আমি তখন ঢাকায় একা, আর আমার মন পড়ে থাকতো তোমার কাছে। সেই ভয় আর উত্তেজনা নিয়ে তোমাকে আমার মনের কথা জানিয়েছিলাম। যখন তুমি বললে—"আমিও তোমার অপেক্ষায় ছিলাম", মনে হয়েছিল আমি আকাশের চাঁদ হাতে পেয়েছি। 
+                
+                আমাদের সেই দিনগুলো ছিল পবিত্র আনন্দের। তোমার দেওয়া সেই <span class="highlight">ব্রেসলেটটা</span> আজও আমার হাতে থাকে, যা আমাকে মনে করিয়ে দেয় তুমি আমার পাশেই আছো। তোমার দেওয়া সেই মিষ্টি <span class="highlight">সালামির টাকাগুলো</span> আজও আমার কাছে পৃথিবীর শ্রেষ্ঠ সম্পদ। আমাদের সেই ডেইরি মিল্ক ভাগ করে খাওয়া আর ছোট ছোট ঝগড়াগুলোই ছিল আমার বেঁচে থাকার রসদ।
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(3)">স্মৃতির পাতায় রমজান...</button></div>
+        </div>
 
-  <div id="text-canvas">
-  </div>
+        <div class="slide" id="s3">
+            <h1>আমাদের সেই মিষ্টি রমজান</h1>
+            <div class="mochi-container">
+                <img src="https://media.tenor.com/Y36Wf3H89vIAAAAi/mochi-peach.gif" class="mochi-gif" alt="Mochi Cat">
+            </div>
+            <div class="content-box">
+                ২০২৪ সালের রমজান মাসটা ছিল আমাদের জীবনের সবচেয়ে সুন্দর সময়। সারাদিন রোজা রেখে সেহরি আর ইফতারের সময় তোমার সাথে কথা বলা, তোমার হাসিমুখ দেখা—সবকিছু কত মায়ার ছিল! আজ এই ২০২৬ সালের দ্বিতীয় রমজানে তুমি আমার থেকে অনেক দূরে। 
 
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+                পরিস্থিতি আমাদের আলাদা করে দিয়েছে ঠিকই, কিন্তু প্রতিটি সেহরির দোয়ায় আর ইফতারের আগে আমি শুধু তোমাকেই খুঁজি। এই দূরত্ব আমাদের মায়াকে এক বিন্দুও কমাতে পারেনি, বরং তোমার অভাব আমাকে প্রতি মুহূর্তে পোড়ায়। আমি আজও ডায়েরির পাতাগুলো উল্টে আমাদের সেই দিনগুলো খুঁজি।
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(4)">ক্ষমা ও অনুতাপ...</button></div>
+        </div>
+
+        <div class="slide" id="s4">
+            <h1>আই এম সরি, ইথিকা</h1>
+            <div class="mochi-container">
+                <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" class="mochi-gif" alt="Mochi Cat">
+            </div>
+            <div class="content-box">
+                ইথিকা, আমি জানি আমার কিছু ভুলে তোমার সম্মানে আঘাত লেগেছে। অনেকের কাছে তোমাকে ছোট হতে হয়েছে। আমি মন থেকে তোমার কাছে <span class="highlight">ক্ষমা চাচ্ছি</span>। বিশ্বাস করো, পরিস্থিতির চাপে আমি বড়ই অসহায় ছিলাম। 
+
+                <div class="sorry-note">
+                    "তোমাকে হারানোর ভয় আমাকে পাগল করে দিয়েছিল। আমি বুঝতে পারিনি আমার আবেগ তোমার সম্মানের ওপর কালো ছায়া ফেলবে। আমাকে মাফ করে দিও, তোমার ফারহান শুধু তোমাকেই চায়।"
+                </div>
+                আমি আজীবন অনুতপ্ত থাকবো সেই দিনগুলোর জন্য। আমি তোমার সম্মান ফিরিয়ে দিতে চাই, তোমাকে আগলে রাখতে চাই।
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(5)">আমার একটি প্রস্তাব...</button></div>
+        </div>
+
+        <div class="slide" id="s5">
+            <h1>পবিত্র ভালোবাসার অঙ্গীকার</h1>
+            <div class="mochi-container">
+                <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" class="mochi-gif" alt="Mochi Cat">
+            </div>
+            <div class="content-box">
+                দেখতে দেখতে এক বছর পূর্ণ হলো। আমি চাই তুমি সবসময় আমার হয়েই থাকো। কিন্তু এবার আমি কোনো <span class="highlight">হারাম রিলেশনশিপ</span> চাই না। আমি চাই আমরা দুজন দুজনকে পবিত্রভাবে ভালোবাসবো। 
+
+                আমরা দূরে থাকবো, নিজেদের যোগ্য করে গড়ে তুলবো, আল্লাহর কাছে একে অপরকে চাইবো। আমরা কোনো ভুল পথে পা বাড়াবো না, শুধু মনের পবিত্র মায়া দিয়ে একে অপরকে আগলে রাখবো। ইথিকা, আমি শুধু তোমারই থাকতে চাই এবং তোমাকেও আজীবন আমার করে রাখতে চাই।
+            </div>
+            <div class="btn-nav"><button class="btn" onclick="nextSlide(6)">ইথিকা... তুমি কি রাজি?</button></div>
+        </div>
+
+        <div class="slide" id="s6" style="text-align: center;">
+            <h1>মায়াবী... তুমি কি রাজি?</h1>
+            <div class="mochi-container">
+                <img src="https://media.tenor.com/S6M_Lg4S6mUAAAAi/mochi-mochi-cat-peach-and-goma.gif" class="mochi-gif" alt="Mochi Cat">
+            </div>
+            <p style="font-size: 26px; font-weight: bold; margin-bottom: 40px;">
+                তুমি কি রাজি আমাদের এই পবিত্র ভালোবাসার পথে হাঁটতে? যেখানে আমি শুধু তোমার থাকবো...
+            </p>
+            <div style="display: flex; justify-content: center; gap: 40px;">
+                <button class="btn" onclick="showSuccess()">হ্যাঁ (Yes)</button>
+                <button id="noBtn" class="btn" style="background: #777;" onmouseover="moveNo()">না (No)</button>
+            </div>
+            <p style="margin-top: 60px; color: #888;">রমজান মোবারক! <br> — ইতি, তোমার ফারহান</p>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <div id="final-screen">
+        <h1 style="font-size: 60px;">আলহামদুলিল্লাহ! ❤️</h1>
+        <img src="https://media.tenor.com/vH9vTf8e5vEAAAAi/mochi-mochi-cat-kiss.gif" class="kissing-mochi" alt="Mochi Kissing">
+        <h2 style="font-size: 35px; color: #ff1493;">ফারহানের মায়াবী রাজি হয়েছে!</h2>
+        <p style="font-size: 24px; color: #555;">অভিনন্দন ইথিকা ও ফারহান! তোমাদের ভালোবাসা পবিত্র হোক।</p>
+        <button class="btn" style="margin-top: 20px;" onclick="location.reload()">আবার শুরু থেকে পড়ুন</button>
+    </div>
+
+    <script>
+        function nextSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(s => s.classList.remove('active'));
+            document.getElementById('s' + n).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function showSuccess() {
+            document.getElementById('final-screen').style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.clientWidth);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
 </body>
 </html>
