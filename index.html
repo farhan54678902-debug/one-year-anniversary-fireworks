@@ -1,43 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের গল্প - ইথিকা ও ফারহান</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;600&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            background: #fff5f7;
+            margin: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            border: 2px solid #ffb6c1;
+        }
+
+        .slide { display: none; animation: fade 1s ease-in; }
+        .slide.active { display: block; }
+
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { font-family: 'Dancing Script', cursive; color: #d02090; text-align: center; }
+        p { font-size: 18px; color: #444; line-height: 1.8; text-align: justify; }
+        
+        .mochi-img { display: block; margin: 0 auto 20px; width: 140px; }
+        .highlight { color: #ff1493; font-weight: bold; }
+
+        .btn-container { text-align: center; margin-top: 20px; }
+        .btn {
+            background: #ff69b4; color: white; border: none; padding: 10px 25px;
+            border-radius: 20px; cursor: pointer; font-size: 16px;
+        }
+
+        .date-badge {
+            background: #ffe4e1; color: #d02090; padding: 5px 15px;
+            border-radius: 10px; font-size: 14px; font-weight: bold;
+        }
+
+        .sorry-section { background: #f9f9f9; padding: 15px; border-left: 5px solid #ff1493; margin-top: 10px; }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
-
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
-
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+    <div class="container">
+        
+        <div class="slide active" id="s1">
+            <span class="date-badge">২০১৯ - প্রথম দেখা</span>
+            <h1>শুরুটা যেখানে...</h1>
+            <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" class="mochi-img">
+            <p>
+                সেই দিনটা অন্যরকম ছিল। আমি সিঁড়িতে বসে প্রতিবেশীর সাথে কথা বলছিলাম, হঠাৎ তুমি আর তোমার বোন এলে। লাল স্কার্টে তোমাকে প্রথম দেখেই মনে এক অদ্ভুত মায়া কাজ করেছিল। তোমার নাম জেনেছিলাম—<span class="highlight">সামিয়া মেহজাবিন ইথিকা</span>।
+            </p>
+            <div class="btn-container"><button class="btn" onclick="nextSlide(2)">তারপর কি হলো?</button></div>
         </div>
-    </div>
-  </script>
 
-  <script src="js/app.js"></script>
+        <div class="slide" id="s2">
+            <span class="date-badge">৩০/১১/২০২১</span>
+            <h1>মনের কথা...</h1>
+            <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif" class="mochi-img">
+            <p>
+                ঢাকায় থাকতে মোবাইলে প্রপোজ করেছিলাম। আমরা তখন ছোট ছিলাম, অনেক লজ্জা ছিল। কিন্তু তুমি যেদিন বললে তুমিও আমার অপেক্ষায় ছিলে, সেদিন আমাদের ভালোবাসা পূর্ণতা পেল। ডেইরি মিল্ক আর তোমার হাসিগুলো আজও স্মৃতিতে সতেজ।
+            </p>
+            <div class="btn-container"><button class="btn" onclick="nextSlide(3)">আমাদের বিশেষ স্মৃতি</button></div>
+        </div>
+
+        <div class="slide" id="s3">
+            <span class="date-badge">সালামি ও ব্রেসলেট</span>
+            <h1>তোমার দেওয়া সব...</h1>
+            <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif" class="mochi-img">
+            <p>
+                তোমার দেওয়া সেই <span class="highlight">ব্রেসলেট</span> আমি আজও যত্নে রেখেছি। তোমার দেওয়া সেই মিষ্টি <span class="highlight">সালামি</span> আমার কাছে সবচেয়ে দামী। গত রমজানে আমরা কত সুন্দর মুহূর্ত কাটিয়েছি, ইফতারের গল্প আর আমাদের সেই হাসিগুলো আজও কানে বাজে।
+            </p>
+            <div class="btn-container"><button class="btn" onclick="nextSlide(4)">ভুল বোঝাবুঝি ও কষ্ট</button></div>
+        </div>
+
+        <div class="slide" id="s4">
+            <span class="date-badge">১৬/০৬/২০২৫ - বর্তমান</span>
+            <h1>আই এম সরি, ইথিকা</h1>
+            <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif" class="mochi-img">
+            <div class="sorry-section">
+                <p>
+                    আমি জানি আমার জন্য তোমার সম্মান অনেক জায়গায় কমেছে, সেজন্য আমি মন থেকে <span class="highlight">ক্ষমা চাচ্ছি</span>। আমার পরিস্থিতিটা যদি তুমি একবার বুঝতে! তোমাকে হারানোর ভয় আর আমার ভুলগুলো আজ আমাকে ছিঁড়ে খাচ্ছে। যদি পারো তবে আমায় মাফ করে দিও।
+                </p>
+            </div>
+            <div class="btn-container"><button class="btn" onclick="nextSlide(5)">শেষ কথা</button></div>
+        </div>
+
+        <div class="slide" id="s5">
+            <span class="date-badge">২০২৬ - রমজান মোবারক</span>
+            <h1>সবসময় তোমারই থাকবো</h1>
+            <img src="https://media.tenor.com/S6M_Lg4S6mUAAAAi/mochi-mochi-cat-peach-and-goma.gif" class="mochi-img">
+            <p>
+                দেখতে দেখতে এক বছর হয়ে গেল। এটা আমাদের <span class="highlight">দ্বিতীয় রমজান</span>, কিন্তু আজ তুমি অনেক দূরে। দূরত্ব যাই হোক, আমার প্রার্থনা আর ডায়েরির পাতায় তুমিই আছো। খুব ভালো থেকো।
+            </p>
+            <h3 style="text-align:center; color:#d02090;">রমজান মোবারক, ইথিকা! ❤️</h3>
+            <p style="text-align:center; font-weight:bold;">— ইতি, তোমার ফারহান</p>
+            <div class="btn-container"><button class="btn" onclick="nextSlide(1)">আবার পড়ুন</button></div>
+        </div>
+
+    </div>
+
+    <script>
+        function nextSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(s => s.classList.remove('active'));
+            document.getElementById('s' + n).classList.add('active');
+        }
+    </script>
 </body>
 </html>
