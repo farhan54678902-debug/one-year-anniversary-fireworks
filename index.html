@@ -1,43 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethika's Adventure World ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;600&family=Dancing+Script:wght@700&display=swap');
+
+        body, html { margin: 0; padding: 0; overflow: hidden; font-family: 'Hind Siliguri', sans-serif; background: #222; }
+
+        #world-container {
+            position: relative; width: 2000px; height: 2000px;
+            background: url('https://www.transparenttextures.com/patterns/clothe.png'), #7cfc00;
+            transition: transform 0.1s linear;
+        }
+
+        /* Character (Mochi Cat) */
+        #player {
+            position: absolute; width: 60px; height: 60px;
+            z-index: 10; transition: left 0.2s, top 0.2s;
+            display: flex; justify-content: center; align-items: center;
+        }
+        #player img { width: 100%; }
+
+        /* Landmark Styles */
+        .landmark {
+            position: absolute; width: 120px; text-align: center; cursor: pointer;
+        }
+        .landmark img { width: 80px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
+        .landmark span { display: block; background: white; border-radius: 10px; padding: 2px 5px; font-weight: bold; font-size: 12px; }
+
+        /* Story Modal */
+        #story-modal {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 85%; max-width: 600px; background: white; border-radius: 30px;
+            border: 6px solid #ff69b4; padding: 30px; display: none; z-index: 100;
+            box-shadow: 0 0 100px rgba(0,0,0,0.5); text-align: center;
+        }
+
+        .diary-text { font-size: 19px; line-height: 1.8; text-align: justify; margin: 20px 0; max-height: 300px; overflow-y: auto; }
+
+        /* UI */
+        #joystick-zone { position: fixed; bottom: 30px; left: 30px; width: 120px; height: 120px; background: rgba(0,0,0,0.2); border-radius: 50%; z-index: 50; border: 2px solid white; }
+        #controls-hint { position: fixed; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 10px; font-size: 12px; }
+
+        .btn { background: #ff1493; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+
+        #final-screen { position: fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:1000; display:none; text-align:center; padding-top:10vh; }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div id="controls-hint">স্ক্রিনে ক্লিক করে বিড়ালটিকে ম্যাপের বিশেষ জায়গায় নিয়ে যাও!</div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <div id="world-container">
+        <div id="player">
+            <img src="https://media.tenor.com/Z4v0-t_vX_IAAAAi/mochi-cat.gif" id="player-img">
+        </div>
 
-  <div id="text-canvas">
-  </div>
+        <div class="landmark" style="top: 300px; left: 400px;" onclick="openStory(1)">
+            <img src="https://media.tenor.com/7S8Wp_v_Fm8AAAAi/peach-goma.gif">
+            <span>Chocolate Forest (2019)</span>
+        </div>
 
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+        <div class="landmark" style="top: 800px; left: 1200px;" onclick="openStory(2)">
+            <img src="https://media.tenor.com/L539_rL9E2AAAAAi/peach-goma-peach-and-goma.gif">
+            <span>The Proposal Lake (2021)</span>
+        </div>
+
+        <div class="landmark" style="top: 1400px; left: 500px;" onclick="openStory(3)">
+            <img src="https://media.tenor.com/On799_S06vIAAAAi/peach-cat-goma-cat.gif">
+            <span>Cave of Apologies (2025)</span>
+        </div>
+
+        <div class="landmark" style="top: 1700px; left: 1500px;" onclick="openStory(4)">
+            <img src="https://media.tenor.com/S6M_Lg4S6mUAAAAi/mochi-mochi-cat-peach-and-goma.gif">
+            <span>Temple of Pure Love</span>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <div id="story-modal">
+        <h2 id="modal-title" style="color: #d02090;"></h2>
+        <div class="diary-text" id="modal-content"></div>
+        <button class="btn" onclick="closeModal()">অ্যাডভেঞ্চার চালিয়ে যাও</button>
+    </div>
+
+    <div id="final-screen">
+        <h1 style="color: #d02090; font-family: 'Dancing Script', cursive; font-size: 50px;">আলহামদুলিল্লাহ! ❤️</h1>
+        <img src="https://media.tenor.com/vH9vTf8e5vEAAAAi/mochi-mochi-cat-kiss.gif" width="300">
+        <h2>আমাদের পবিত্র ভালোবাসা অমর হোক</h2>
+        <p>ইথিকা ও ফারহান - ২০২৬</p>
+        <button class="btn" onclick="location.reload()">আবার শুরু করি</button>
+    </div>
+
+    <script>
+        const player = document.getElementById('player');
+        const world = document.getElementById('world-container');
+        let pX = 100, pY = 100;
+
+        // Click to move mechanism
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#story-modal') || e.target.closest('.landmark')) return;
+            
+            pX = e.pageX - 30;
+            pY = e.pageY - 30;
+            
+            player.style.left = pX + 'px';
+            player.style.top = pY + 'px';
+
+            // Auto camera follow
+            window.scrollTo({
+                left: pX - window.innerWidth/2,
+                top: pY - window.innerHeight/2,
+                behavior: 'smooth'
+            });
+        });
+
+        const stories = {
+            1: {
+                title: "২০১৯: ডেইরি মিল্ক আর সেই মায়াবী সিঁড়ি",
+                text: "ইথিকা, এই অ্যাডভেঞ্চার জগতের শুরুটা ২০১৯ সালে। সেই সিঁড়িতে তোমাকে প্রথম দেখা। লাল স্কার্টে তুমি যখন এলে, আমার পৃথিবী থমকে গিয়েছিল। Samia Mehzabin Ethika নামটা সেদিন থেকেই ডায়েরিতে। ডেইরি মিল্ক পকেটে নিয়ে কত ঘুরতাম, তুমি কি জানতে? তোমার এক পলকের হাসি ছিল আমার সারাদিনের ক্লান্তি দূর করার ওষুধ।"
+            },
+            2: {
+                title: "২০২১: ভালোবাসার হ্রদ",
+                text: "২০২১ এর ৩০শে নভেম্বর। ঢাকায় বসে তোমাকে মনের কথা বলা আর তোমার সেই 'আমিও অপেক্ষায় ছিলাম'—উফ! জীবনটা রঙিন হয়ে গিয়েছিল। তোমার দেওয়া সেই ব্রেসলেট আর মিষ্টি সালামি আমি আজও বুকের কাছে আগলে রাখি। আমরা ডেইরি মিল্ক ভাগ করে খেতাম, সেই মিষ্টি মুহূর্তগুলো আজও আমার সবচেয়ে বড় সম্পদ।"
+            },
+            3: {
+                title: "২০২৫: অনুতাপের গুহা",
+                text: "ইথিকা, ১৬ই জুন ২০২৫ এর সেই কঠিন সময়। আমার ভুলের কারণে তোমার সম্মান অনেক জায়গায় কমেছে। আমি পরিস্থিতির শিকার ছিলাম, তোমাকে হারানোর ভয়ে দিশেহারা হয়ে ভুল পথে হেঁটেছিলাম। আমি মন থেকে ক্ষমা চাচ্ছি। এই গুহায় আমার সব অহংকার বিসর্জন দিয়ে তোমার ভালোবাসা ভিক্ষা চাচ্ছি। মাফ করে দিও তোমার ফারহানকে।"
+            },
+            4: {
+                title: "২০২৬: পবিত্র ভালোবাসার মন্দির",
+                text: "দেখতে দেখতে এক বছর পূর্ণ হলো। এই মন্দিরে দাঁড়িয়ে আমি অঙ্গীকার করছি, আমি তোমাকে ছাড়া আর কাউকে চাই না। তবে এবার কোনো হারাম রিলেশনশিপ নয়। আমরা দূরে থাকবো, নিজেদের যোগ্য বানাবো, আল্লাহর কাছে দোয়া করবো। তুমি কি রাজি আমার সাথে এই পবিত্র পথে চলতে? যেখানে আমি শুধু তোমারই থাকবো...\n\n<br><button class='btn' onclick='showWin()'>হ্যাঁ, আমি রাজি!</button>"
+            }
+        };
+
+        function openStory(id) {
+            const s = stories[id];
+            document.getElementById('modal-title').innerText = s.title;
+            document.getElementById('modal-content').innerHTML = s.text;
+            document.getElementById('story-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('story-modal').style.display = 'none';
+        }
+
+        function showWin() {
+            document.getElementById('final-screen').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
