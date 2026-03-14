@@ -1,43 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Erin Apu!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ব্যাকগ্রাউন্ড ম্যাজিক */
+        .stars {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            z-index: 1;
+        }
+
+        /* ৩ডি কার্ড কন্টেইনার */
+        .card-container {
+            width: 350px;
+            height: 500px;
+            perspective: 1000px;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-container.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* কার্ডের সামনের দিক */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(255, 0, 150, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #1a1a1a, #000);
+        }
+
+        .card-front h1 {
+            font-size: 80px;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px #ff007f;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 0;
+        }
+
+        .card-front .name-glow {
+            font-family: 'Pacifico', cursive;
+            font-size: 60px;
+            color: #fff;
+            text-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
+            margin-top: -20px;
+        }
+
+        .click-hint {
+            margin-top: 50px;
+            color: #555;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: blink 1.5s infinite;
+        }
+
+        /* কার্ডের পেছনের দিক */
+        .card-back {
+            background: #fff;
+            color: #000;
+            transform: rotateY(180deg);
+            padding: 30px;
+        }
+
+        .card-back h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 35px;
+            color: #ff007f;
+            margin-bottom: 20px;
+        }
+
+        .card-back p {
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .card-back .footer {
+            margin-top: 30px;
+            font-weight: bold;
+            color: #ff007f;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* আতশবাজি পার্টিকেলস */
+        .confetti {
+            position: absolute;
+            width: 10px; height: 10px;
+            background: #ff007f;
+            z-index: 5;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <div class="stars"></div>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <div class="card-container" onclick="this.classList.toggle('flipped'); createConfetti();">
+        <div class="card-inner">
+            <div class="card-front">
+                <h1>19</h1>
+                <div class="name-glow">Erin</div>
+                <div class="click-hint">Click to Open</div>
+            </div>
 
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+            <div class="card-back">
+                <h2>Happy Birthday!</h2>
+                <p>
+                    শুভ জন্মদিন <b>এরিন আপু</b>! আজকের দিনটা আপনার জন্য অনেক অনেক স্পেশাল। সারাদিন খুব হাসিখুশি থাকুন আর দিনটা প্রাণভরে এনজয় করুন। ১৯তম জন্মদিনের অনেক অনেক ভালোবাসা!
+                </p>
+                <div class="footer">Have a blast! 🥳</div>
+            </div>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <script>
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = Math.random() * window.innerHeight + 'px';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(confetti);
+
+                confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'ease-out'
+                });
+
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    </script>
 </body>
 </html>
