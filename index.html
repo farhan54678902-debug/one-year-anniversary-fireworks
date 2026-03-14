@@ -1,43 +1,253 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday To My Best Guide - Erin Apu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: #050505;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 20px;
+            pointer-events: none;
+        }
+
+        /* এরিন আপুর নাম - সুপার গর্জাস স্টাইল */
+        .name-container {
+            margin-bottom: 20px;
+        }
+
+        .name-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(80px, 15vw, 150px);
+            background: linear-gradient(45deg, #fff, #ffd700, #ff8c00, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+            pointer-events: auto;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: #ffd700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-top: -20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards 1s;
+        }
+
+        /* ইমোশনাল মেসেজ বক্স */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 600px;
+            margin-top: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1.5s forwards 2s;
+            pointer-events: auto;
+        }
+
+        .glass-card p {
+            color: #e0e0e0;
+            line-height: 1.8;
+            font-size: 20px;
+            font-style: italic;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .btn-celebrate {
+            margin-top: 30px;
+            background: none;
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-celebrate:hover {
+            background: #ffd700;
+            color: #000;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes slideUp { 
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* মোবাইল স্ক্রিনের জন্য */
+        @media (max-width: 600px) {
+            .name-title { font-size: 80px; }
+            .glass-card { width: 90%; padding: 25px; }
+            .glass-card p { font-size: 16px; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+    <canvas id="canvas"></canvas>
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+    <div class="container">
+        <div class="name-container">
+            <h1 class="name-title">Erin</h1>
+            <div class="subtitle">Our Shining Star</div>
+        </div>
 
-  <div id="text-canvas">
-  </div>
-
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
+        <div class="glass-card">
+            <p>
+                শুভ জন্মদিন <span class="highlight">এরিন আপু</span>! <br><br>
+                আমার মন খারাপের দিনে আপনি যেভাবে পাশে দাঁড়িয়েছেন, তা আমি কোনোদিন ভুলবো না। আপনি শুধু পাড়ার বড় আপু নন, আপনি আমার জীবনের এমন একজন মানুষ যার সাথে সব শেয়ার করা যায়। 
+                আপনার ১৯তম এই জন্মদিনটি আপনার মতোই উজ্জ্বল আর সুন্দর হোক। 
+            </p>
+            <button class="btn-celebrate" onclick="megaSurprise()">Magic Touch ✨</button>
         </div>
     </div>
-  </script>
 
-  <script src="js/app.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let hearts = [];
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // মাউস মুভমেন্টে হার্ট তৈরি
+        window.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.1) {
+                hearts.push(new Heart(e.clientX, e.clientY));
+            }
+        });
+
+        class Particle {
+            constructor(x, y, color, velX, velY) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velX = velX;
+                this.velY = velY;
+                this.alpha = 1;
+            }
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            update() {
+                this.x += this.velX;
+                this.y += this.velY;
+                this.alpha -= 0.01;
+            }
+        }
+
+        class Heart {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 10 + 5;
+                this.velY = -Math.random() * 2 - 1;
+                this.alpha = 1;
+            }
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = '#ff3366';
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText('❤', this.x, this.y);
+            }
+            update() {
+                this.y += this.velY;
+                this.alpha -= 0.01;
+            }
+        }
+
+        function spawnFirework(x, y) {
+            const colors = ['#ffd700', '#ffffff', '#ff3366', '#00d4ff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            for (let i = 0; i < 60; i++) {
+                const angle = (Math.PI * 2 / 60) * i;
+                const speed = Math.random() * 4 + 2;
+                particles.push(new Particle(x, y, color, Math.cos(angle) * speed, Math.sin(angle) * speed));
+            }
+        }
+
+        function megaSurprise() {
+            for(let i=0; i<10; i++) {
+                setTimeout(() => {
+                    spawnFirework(Math.random() * canvas.width, Math.random() * canvas.height);
+                }, i * 300);
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p, i) => {
+                if (p.alpha > 0) { p.update(); p.draw(); }
+                else { particles.splice(i, 1); }
+            });
+
+            hearts.forEach((h, i) => {
+                if (h.alpha > 0) { h.update(); h.draw(); }
+                else { hearts.splice(i, 1); }
+            });
+
+            if (Math.random() < 0.03) spawnFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.5);
+            
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
