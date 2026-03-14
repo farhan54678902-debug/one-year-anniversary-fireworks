@@ -1,43 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy CSV Anniversary!</title>
-  <link rel="stylesheet" type="text/css" href="libs/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="libs/jquery-1.10.1.min.js"></script>
-  <script src="libs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="libs/underscore-min.js"></script>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Erin Apu!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Bungee+Shade&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background: radial-gradient(circle, #1a0033 0%, #000 100%);
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
 
-  <!-- F I R E W O R K S -->
-  <div id="fireworks-canvas">
-  </div>
+        #canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
 
-  <!-- M A P -->
-  <div id="map-canvas" >
-   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed&amp;output=svembed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=40.728552,-73.99528&amp;spn=0.005521,0.011362&amp;t=m&amp;z=17&amp;layer=c&amp;cbll=40.728391,-73.995416&amp;panoid=RCuSw5NQiARQ-nl4cWSKIQ&amp;cbp=12,123.73,,0,-21.59&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-  </div>
+        .main-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            pointer-events: none;
+        }
 
-  <div id="text-canvas">
-  </div>
+        /* এরিন আপুর নাম - সুপার বিগ ও স্টাইলিশ */
+        .name-wrapper {
+            animation: bounce 2s infinite;
+            pointer-events: auto;
+        }
 
-  <script type="type/jst" id="card-msg-templ">
-      <div id="card-text">
-      <div class="card-message">
-        <p>Dear all,</p>
-        <p>A little over a year ago, we had the idea to combine our fondness for listening to LCD Soundsystem with separating values by commas. We wanted to create an informal group where people could swing by and work on their side projects or experiments with people doing the same. Thanks to everyone, it's been both a super fun and super productive year. The quiche this week is on us.</p>
-      </div>
-        <p><center><strong>Happy One Year Anniversary!</strong></center></p>
-      <div class="card-message">
-        <p>Michael + Brian</p>
-      </div>
-        <div id="celebrate-btn" class="rotater" href="#celebrate">
-          <span>Now start the show!</span>
-        </div>
-    </div>
-  </script>
+        .name-text {
+            font-family: 'Bungee Shade', cursive;
+            font-size: clamp(60px, 12vw, 150px);
+            color: #ff00ff;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            margin: 0;
+        }
 
-  <script src="js/app.js"></script>
-</body>
-</html>
+        .apu-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 50px;
+            color: #00d4ff;
+            margin-top: -30px;
+            text-shadow: 0 0 15px #00d4ff;
+        }
+
+        .birthday-wish {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px dashed #ffd700;
+            max-width: 500px;
+            margin-top: 20px;
+            pointer-events: auto;
+            transform: rotate(-2deg);
+        }
+
+        .birthday-wish h2 {
+            font-size: 28px;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .birthday-wish p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .btn-party {
+            background: linear-gradient(45deg, #ff007f, #00d4ff);
+            border: none;
+            padding: 15px 40px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50px;
+            margin-top: 30px;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: 0 10px 20px rgba(255, 0, 127, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-party:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 0 30px #ff007f;
+        }
+
+        @keyframes bounce {
+            0%, 100%
